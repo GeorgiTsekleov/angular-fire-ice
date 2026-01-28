@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import { User, ApiResponse } from "@angular-fire-ice/shared";
 
 const app = express();
 const port = Number(process.env.PORT) || 8080;
@@ -29,6 +30,21 @@ app.use(express.json());
 
 app.get("/", (_req, res) => {
   res.send("Hello from Express server!");
+});
+
+app.get("/api/test-user", (_req, res) => {
+  const testUser: User = {
+    id: "1",
+    email: "test@example.com",
+    name: "Test User",
+  };
+
+  const response: ApiResponse<User> = {
+    success: true,
+    data: testUser,
+  };
+
+  res.json(response);
 });
 
 app.listen(port, () => {
