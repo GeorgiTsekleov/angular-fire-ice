@@ -2,7 +2,8 @@ import express from "express";
 import "dotenv/config";
 import { User, ApiResponse } from "@angular-fire-ice/shared";
 
-const app = express();
+export const app = express();
+
 const port = Number(process.env.PORT) || 8080;
 
 if (Number.isNaN(port) || port <= 0) {
@@ -47,6 +48,8 @@ app.get("/api/test-user", (_req, res) => {
   res.json(response);
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+}
