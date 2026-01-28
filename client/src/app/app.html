@@ -1,4 +1,22 @@
 <main>
   <h1>Client App</h1>
+
+  <header>
+    <nav>
+      <a routerLink="/">Home</a>
+      <a routerLink="/books">Books</a>
+      <a routerLink="/books/1">Books Detail 1</a>
+      <a routerLink="/favorites">Favorites</a>
+    </nav>
+  </header>
+
+  <body class="body">
+    <h2>home title: {{ title() }}</h2>
+  </body>
+
+  <footer class="footer">
+    <p>footer</p>
+  </footer>
+
   <router-outlet />
 </main>
