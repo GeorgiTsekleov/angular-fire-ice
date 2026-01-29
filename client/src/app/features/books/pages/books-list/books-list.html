@@ -1,1 +1,17 @@
 <p>books-list works!</p>
+
+@if (booksFacade.loading()) {
+  <p>Loading books...</p>
+}
+
+@if (booksFacade.error(); as err) {
+  <p>Error: {{ err }}</p>
+}
+
+@if (booksFacade.books(); as books) {
+  <ul>
+    @for (book of booksFacade.books(); track book.url) {
+      <li>{{ book.name }}</li>
+    }
+  </ul>
+}
