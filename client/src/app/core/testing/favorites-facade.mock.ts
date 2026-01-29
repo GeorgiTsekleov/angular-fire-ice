@@ -8,6 +8,7 @@ export function createMockFavoritesFacade(overrides?: Partial<FavoritesFacade>):
   return {
     favoriteBookIds,
     favoritesCount,
+    loadFavorites: vi.fn(),
     toggleFavorite: vi.fn(),
     isFavorite: (bookId: string) => favoriteBookIds().includes(bookId),
     ...overrides,
