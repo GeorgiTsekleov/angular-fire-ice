@@ -1,17 +1,11 @@
 <p>books-list works!</p>
 
-@if (booksFacade.loading()) {
-  <p>Loading books...</p>
-}
-
-@if (booksFacade.error(); as err) {
-  <p>Error: {{ err }}</p>
-}
-
-@if (booksFacade.books(); as books) {
-  <ul>
-    @for (book of booksFacade.books(); track book.url) {
-      <li>{{ book.name }}</li>
-    }
-  </ul>
-}
+<app-loading-guard [loadingInput]="booksFacade.loading()">
+  <app-error-guard [errorInput]="booksFacade.error()">
+    <ul>
+      @for (book of books(); track book.url; let i = $index) {
+        <li>{{ book?.name ?? `Book: ${i + 1}` }}</li>
+      }
+    </ul>
+  </app-error-guard>
+</app-loading-guard>
