@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooksList } from './books-list';
-import { provideMockBooksFacade } from '../../../../core/testing';
+import { provideMockBooksFacade, provideMockFavoritesFacade } from '../../../../core/testing';
 
 describe('BooksList', () => {
   let component: BooksList;
@@ -10,7 +10,7 @@ describe('BooksList', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BooksList],
-      providers: [provideMockBooksFacade()],
+      providers: [provideMockBooksFacade(), provideMockFavoritesFacade()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BooksList);
