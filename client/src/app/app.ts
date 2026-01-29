@@ -14,9 +14,12 @@ export class App {
   protected readonly title = this.appFacade.title;
   protected readonly counter = this.appFacade.counter;
 
-  protected readonly favoritesCount = inject(FavoritesFacade);
+  protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
 
-  protected readonly headerFavoritesCount = computed(() => this.favoritesCount.favoritesCount());
+  private favoritesFacade = inject(FavoritesFacade);
+  constructor() {
+    this.favoritesFacade.loadFavorites();
+  }
 
   incrementCounter() {
     this.appFacade.incrementCounter();

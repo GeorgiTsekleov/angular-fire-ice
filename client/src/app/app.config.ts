@@ -9,7 +9,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { booksReducer } from './core/state/books/books.reducer';
 import { BooksEffects } from './core/state/books/books.effects';
 import { favoritesReducer } from './core/state/favorites/favorites.reducer';
-import { FavoritesFacade } from './core/services/favorites.facade';
+import { favoritesEffects } from './core/state/favorites/favorites.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideStore({ app: appFeatureReducer, books: booksReducer, favorites: favoritesReducer }),
-    provideEffects([BooksEffects, FavoritesFacade]),
+    provideEffects(BooksEffects, favoritesEffects),
     provideHttpClient(withFetch()),
   ],
 };

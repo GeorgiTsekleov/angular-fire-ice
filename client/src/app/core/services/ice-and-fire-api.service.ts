@@ -10,7 +10,7 @@ export class IceAndFireApiService {
 
   getAllBooks(page = 1, pageSize = 10): Observable<Book[]> {
     const params = { page: String(page), pageSize: String(pageSize) };
-    const baseUrl = environment.baseUrl;
+    const baseUrl = environment.apiUrl;
     const booksPath = environment.booksPath;
 
     if (!baseUrl || !booksPath) {
