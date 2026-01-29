@@ -4,7 +4,7 @@ import {
   selectFavoriteBookIds,
   selectFavoritesCount,
 } from '../state/favorites/favorites.selectors';
-import { toggleFavorite } from '../state/favorites/favorites.actions';
+import { toggleFavorite, loadFavorites } from '../state/favorites/favorites.actions';
 import { Book } from '../models';
 
 @Injectable({ providedIn: 'root' })
@@ -13,6 +13,10 @@ export class FavoritesFacade {
 
   readonly favoriteBookIds = this.store.selectSignal(selectFavoriteBookIds);
   readonly favoritesCount = this.store.selectSignal(selectFavoritesCount);
+
+  loadFavorites(): void {
+    this.store.dispatch(loadFavorites());
+  }
 
   toggleFavorite(book: Book): void {
     this.store.dispatch(toggleFavorite({ bookId: book.url }));
