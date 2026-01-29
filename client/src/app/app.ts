@@ -3,6 +3,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { selectCounter, selectTitle } from './core/state/app.selectors';
 import { Store } from '@ngrx/store';
 import { decrementCounter, incrementCounter, resetCounter } from './core/state/app.actions';
+import { AppFacade } from './core/services/app.facade';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +12,19 @@ import { decrementCounter, incrementCounter, resetCounter } from './core/state/a
   styleUrl: './app.scss',
 })
 export class App {
-  private store = inject(Store);
-  protected readonly title = this.store.selectSignal(selectTitle);
-  protected readonly counter = this.store.selectSignal(selectCounter);
+  private appFacade = inject(AppFacade);
+  protected readonly title = this.appFacade.title;
+  protected readonly counter = this.appFacade.counter;
 
   incrementCounter() {
-    console.log('incrementCounter');
-    this.store.dispatch(incrementCounter());
+    this.appFacade.incrementCounter();
   }
 
   decrementCounter() {
-    console.log('decrementCounter');
-    this.store.dispatch(decrementCounter());
+    this.appFacade.decrementCounter();
   }
 
   resetCounter() {
-    console.log('resetCounter');
-    this.store.dispatch(resetCounter());
+    this.appFacade.resetCounter();
   }
 }

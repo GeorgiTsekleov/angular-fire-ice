@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { selectCounter } from '../../../../core/state/app.selectors';
-import { Store } from '@ngrx/store';
+import { AppFacade } from '../../../../core/services/app.facade';
 
 @Component({
   selector: 'app-book-detail',
@@ -11,7 +10,19 @@ import { Store } from '@ngrx/store';
 })
 export class BookDetail {
   private route = inject(ActivatedRoute);
-  private store = inject(Store);
-  protected readonly counter = this.store.selectSignal(selectCounter);
+  private appFacade = inject(AppFacade);
+  protected readonly counter = this.appFacade.counter;
   protected readonly bookId = this.route.snapshot.paramMap.get('id') || '';
+
+  incrementCounter() {
+    this.appFacade.incrementCounter();
+  }
+
+  decrementCounter() {
+    this.appFacade.decrementCounter();
+  }
+
+  resetCounter() {
+    this.appFacade.resetCounter();
+  }
 }
