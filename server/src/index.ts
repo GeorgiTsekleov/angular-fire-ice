@@ -1,6 +1,8 @@
 import express from "express";
 import "dotenv/config";
 import { User, ApiResponse } from "@angular-fire-ice/shared";
+import { InMemoryFavoritesRepository } from "./favorites/in-memory-favorites.repository";
+import { registerFavoritesRoutes } from "./favorites/favorites.routes";
 
 export const app = express();
 
@@ -47,6 +49,9 @@ app.get("/api/test-user", (_req, res) => {
 
   res.json(response);
 });
+
+const favoritesRepository = new InMemoryFavoritesRepository();
+registerFavoritesRoutes(app, favoritesRepository);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => {
