@@ -4,7 +4,12 @@
   <app-error-guard [errorInput]="booksFacade.error()">
     <ul>
       @for (book of books(); track book.url; let i = $index) {
-        <li>{{ book?.name ?? `Book: ${i + 1}` }}</li>
+        <li>
+          <span>Book: {{ book?.name ?? `Book: ${i + 1}` }}</span>
+          <button type="button" (click)="onToggleFavorite(book)">
+            {{ isFavorite(book.url) ? '−' : '+' }}
+          </button>
+        </li>
       }
     </ul>
   </app-error-guard>
