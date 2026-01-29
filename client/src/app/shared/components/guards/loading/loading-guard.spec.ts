@@ -8,12 +8,13 @@ describe('LoadingGuard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoadingGuard]
-    })
-    .compileComponents();
+      imports: [LoadingGuard],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoadingGuard);
+    fixture.componentRef.setInput('loadingInput', false);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
