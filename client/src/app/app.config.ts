@@ -5,13 +5,19 @@ import { provideEffects } from '@ngrx/effects';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { appFeatureReducer } from './core/state/app.reducer';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { booksReducer } from './core/state/books/books.reducer';
+import { BooksEffects } from './core/state/books/books.effects';
+import { favoritesReducer } from './core/state/favorites/favorites.reducer';
+import { FavoritesFacade } from './core/services/favorites.facade';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideStore({ app: appFeatureReducer }),
-    provideEffects([]),
+    provideStore({ app: appFeatureReducer, books: booksReducer, favorites: favoritesReducer }),
+    provideEffects([BooksEffects, FavoritesFacade]),
+    provideHttpClient(withFetch()),
   ],
 };
