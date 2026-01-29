@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { BookDetail } from './book-detail';
-
+import { provideMockAppFacade } from '../../../../core/testing';
 
 const VALID_ID = '1';
 
@@ -23,6 +23,7 @@ describe('BookDetail', () => {
             },
           },
         },
+        provideMockAppFacade(),
       ],
     }).compileComponents();
 
