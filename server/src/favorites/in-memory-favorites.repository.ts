@@ -15,4 +15,8 @@ export class InMemoryFavoritesRepository implements FavoritesRepository {
   remove(bookId: string): void {
     this.store = removeFromStore(this.store, bookId);
   }
+
+  reset(): void {
+    this.store = [];
+  }
 }

@@ -76,3 +76,15 @@ describe("Favorites API", () => {
     });
   });
 });
+
+describe("InMemoryFavoritesRepository", () => {
+  it("reset() clears the store", () => {
+    const repo = new InMemoryFavoritesRepository();
+    repo.add("id-1");
+    repo.add("id-2");
+    expect(repo.getAll()).toEqual(["id-1", "id-2"]);
+
+    repo.reset();
+    expect(repo.getAll()).toEqual([]);
+  });
+});
