@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { AppFacade } from '../../../../core/services/app.facade';
 
 @Component({
@@ -12,7 +14,10 @@ export class BookDetail {
   private route = inject(ActivatedRoute);
   private appFacade = inject(AppFacade);
   protected readonly counter = this.appFacade.counter;
-  protected readonly bookId = this.route.snapshot.paramMap.get('id') || '';
+  protected readonly bookId = toSignal(
+    this.route.paramMap.pipe(map((params) => params.get('id') ?? '')),
+    { initialValue: '' },
+  );
 
   incrementCounter() {
     this.appFacade.incrementCounter();

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 import { BookDetail } from './book-detail';
 import { provideMockAppFacade } from '../../../../core/testing';
 
@@ -16,11 +17,9 @@ describe('BookDetail', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            snapshot: {
-              paramMap: {
-                get: (key: string) => (key === 'id' ? VALID_ID : null),
-              },
-            },
+            paramMap: of({
+              get: (key: string) => (key === 'id' ? VALID_ID : null),
+            }),
           },
         },
         provideMockAppFacade(),

@@ -15,3 +15,4 @@ export const loadBooksFailure = createAction(
   '[Books] Load Books Failure',
   props<{ error: string }>(),
 );
+export const setSearchQuery = createAction('[Books] Set Search Query', props<{ query: string }>());
