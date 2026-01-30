@@ -48,5 +48,6 @@ export async function register(
     },
   };
   res.status(201).json(body);
+  console.log('register success', body);
   favoritesRepository.reset();
 }

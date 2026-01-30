@@ -52,5 +52,6 @@ export async function login(
     },
   };
   res.status(200).json(body);
+  console.log("login success", body);
   favoritesRepository.reset();
 }
