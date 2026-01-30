@@ -6,3 +6,15 @@ export const register = createAction('[Auth] Register', props<{ credentials: Reg
 export const registerSuccess = createAction('[Auth] Register Success', props<{ user: UserDto }>());
 
 export const registerFailure = createAction('[Auth] Register Failure', props<{ error: string }>());
+
+export const checkAuth = createAction('[Auth] Check Auth');
+
+export const checkAuthSuccess = createAction(
+  '[Auth] Check Auth Success',
+  props<{ user: UserDto | null }>(),
+);
+
+export const checkAuthFailure = createAction(
+  '[Auth] Check Auth Failure',
+  props<{ error: string }>(),
+);

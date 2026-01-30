@@ -19,4 +19,10 @@ export class AuthApiService {
       },
     );
   }
+  
+  getMe(): Observable<ApiResponse<UserDto>> {
+    return this.http.get<ApiResponse<UserDto>>(`${this.baseUrl}/${environment.authPath}/${environment.me}`, {
+      withCredentials: true,
+    });
+  }
 }

@@ -6,4 +6,5 @@ export const environment = {
   favoritesPath: 'api/favorites',
   authPath: 'api/auth',
   register: 'register',
+  me: 'me',
 } as const;

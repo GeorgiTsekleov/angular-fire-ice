@@ -3,7 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthApiService } from '../../services/api/auth-api.service';
-import { register, registerSuccess, registerFailure } from './auth.actions';
+import {
+  register,
+  registerSuccess,
+  registerFailure,
+  checkAuth,
+  checkAuthSuccess,
+  checkAuthFailure,
+} from './auth.actions';
+import { ApiResponse, UserDto } from '@angular-fire-ice/shared';
 
 @Injectable()
 export class AuthEffects {
@@ -30,6 +38,32 @@ export class AuthEffects {
               }),
             ),
           ),
+        ),
+      ),
+    ),
+  );
+
+  readonly checkAuth$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(checkAuth),
+      switchMap(() =>
+        this.api.getMe().pipe(
+          map((res: ApiResponse<UserDto>) => {
+            if (res.success && res.data) {
+              return checkAuthSuccess({ user: res.data });
+            }
+            return checkAuthSuccess({ user: null });
+          }),
+          catchError((err) => {
+            if (err?.status === 401) {
+              return of(checkAuthSuccess({ user: null }));
+            }
+            return of(
+              checkAuthFailure({
+                error: err?.error?.error ?? err?.message ?? 'Failed to check auth',
+              }),
+            );
+          }),
         ),
       ),
     ),

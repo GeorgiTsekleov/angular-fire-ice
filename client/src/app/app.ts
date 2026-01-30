@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { AppFacade } from './core/services/app.facade';
 import { FavoritesFacade } from './core/services/favorites.facade';
+import { AuthFacade } from './core/services/auth/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,13 @@ export class App {
   protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
 
   private favoritesFacade = inject(FavoritesFacade);
+  protected readonly authFacade = inject(AuthFacade);
+
+  protected readonly user = computed(() => this.authFacade.user());
+
   constructor() {
     this.favoritesFacade.loadFavorites();
+    this.authFacade.checkAuth();
   }
 
   incrementCounter() {
