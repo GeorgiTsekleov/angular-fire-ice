@@ -17,6 +17,11 @@ export interface RegisterBody {
   name?: string;
 }
 
+export interface LoginBody {
+  email: string;
+  password: string;
+}
+
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;

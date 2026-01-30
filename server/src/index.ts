@@ -7,7 +7,7 @@ import { registerFavoritesRoutes } from "./favorites/favorites.routes";
 import type { UserRepository } from "./auth/types";
 import { InMemoryUserRepository } from "./auth/in-memory-user.repository";
 import session from "express-session";
-import { registerAuthRoutes } from "./auth/auth.routes";
+import { authRoutes } from "./auth/auth.routes";
 
 export function createApp(
   favoritesRepository?: FavoritesRepository,
@@ -72,7 +72,7 @@ export function createApp(
   registerFavoritesRoutes(app, favoritesRepo);
 
   const userRepo = userRepository ?? new InMemoryUserRepository();
-  registerAuthRoutes(app, userRepo, favoritesRepo);
+  authRoutes(app, userRepo, favoritesRepo);
 
   return app;
 }

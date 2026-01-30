@@ -8,6 +8,10 @@ export class InMemoryUserRepository implements UserRepository {
     return this.users.find((u) => u.email.trim().toLowerCase() === normalised);
   }
 
+  findById(id: string): UserEntity | undefined {
+    return this.users.find((u) => u.id === id);
+  }
+
   create(entity: UserEntity): void {
     this.users.push(entity);
   }
