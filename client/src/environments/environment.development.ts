@@ -8,4 +8,5 @@ export const environment = {
   register: 'register',
   me: 'me',
   logout: 'logout',
+  login: 'login',
 } as const;
