@@ -11,5 +11,6 @@ export function logout(
       return;
     }
     res.status(204).send();
+    console.log("logout success");
   });
 }

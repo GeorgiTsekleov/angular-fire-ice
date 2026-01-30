@@ -10,14 +10,21 @@ import { booksReducer } from './core/state/books/books.reducer';
 import { BooksEffects } from './core/state/books/books.effects';
 import { favoritesReducer } from './core/state/favorites/favorites.reducer';
 import { favoritesEffects } from './core/state/favorites/favorites.effects';
+import { authReducer } from './core/state/auth/auth.reducer';
+import { AuthEffects } from './core/state/auth/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideStore({ app: appFeatureReducer, books: booksReducer, favorites: favoritesReducer }),
-    provideEffects(BooksEffects, favoritesEffects),
+    provideStore({
+      app: appFeatureReducer,
+      books: booksReducer,
+      favorites: favoritesReducer,
+      auth: authReducer,
+    }),
+    provideEffects(BooksEffects, favoritesEffects, AuthEffects),
     provideHttpClient(withFetch()),
   ],
 };
