@@ -1,13 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
-import { provideMockAppFacade, provideMockFavoritesFacade } from './core/testing';
+import {
+  provideMockAppFacade,
+  provideMockAuthFacade,
+  provideMockFavoritesFacade,
+} from './core/testing';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter([]), provideMockAppFacade(), provideMockFavoritesFacade()],
+      providers: [
+        provideRouter([]),
+        provideMockAppFacade(),
+        provideMockFavoritesFacade(),
+        provideMockAuthFacade(),
+      ],
     }).compileComponents();
   });
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { RegisterPage } from './register-page';
+import { provideMockAuthFacade } from '../../../../../core/testing';
 
 describe('RegisterPage', () => {
   let component: RegisterPage;
@@ -8,9 +9,9 @@ describe('RegisterPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterPage]
-    })
-    .compileComponents();
+      imports: [RegisterPage],
+      providers: [provideRouter([]), provideMockAuthFacade()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterPage);
     component = fixture.componentInstance;
