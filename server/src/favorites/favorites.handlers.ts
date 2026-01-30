@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
+import type { FavoriteBookIds } from "@angular-fire-ice/shared";
 import type { FavoritesRepository, FavoritesApiResponse } from "./types";
 
-function toResponse(ids: string[]): FavoritesApiResponse {
+function toResponse(ids: FavoriteBookIds): FavoritesApiResponse {
   return { favoriteBookIds: ids };
 }
 
