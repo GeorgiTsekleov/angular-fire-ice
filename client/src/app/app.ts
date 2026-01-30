@@ -3,10 +3,11 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { AppFacade } from './core/services/app.facade';
 import { FavoritesFacade } from './core/services/favorites.facade';
 import { AuthFacade } from './core/services/auth/auth.facade';
+import { AuthNavComponent } from './shared/components/auth-nav/auth-nav/auth-nav';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, AuthNavComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -18,13 +19,9 @@ export class App {
   protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
 
   private favoritesFacade = inject(FavoritesFacade);
-  protected readonly authFacade = inject(AuthFacade);
-
-  protected readonly user = computed(() => this.authFacade.user());
 
   constructor() {
     this.favoritesFacade.loadFavorites();
-    this.authFacade.checkAuth();
   }
 
   incrementCounter() {

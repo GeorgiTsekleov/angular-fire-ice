@@ -7,11 +7,7 @@
       <a routerLink="/books">Books</a>
       <a routerLink="/books/1">Books Detail 1</a>
       <a routerLink="/favorites">Favorites ({{ headerFavoritesCount() }})</a>
-      <a routerLink="/register">Register</a>
-
-      @if (authFacade.status() === 'loaded' && user() !== null) {
-        <a routerLink="/">Profile ({{ user()?.email }})</a>
-      }
+      <app-auth-nav />
     </nav>
     <p>counter: {{ counter() }}</p>
   </header>

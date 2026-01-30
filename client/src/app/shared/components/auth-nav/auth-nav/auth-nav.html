@@ -1,0 +1,7 @@
+@if (isAuthenticated()) {
+  <span class="user-info">{{ user()?.email }}</span>
+  <button type="button" (click)="onLogout()">Log out</button>
+} @else {
+  <a routerLink="/register">Register</a>
+  <a routerLink="/login">Log in</a>
+}
