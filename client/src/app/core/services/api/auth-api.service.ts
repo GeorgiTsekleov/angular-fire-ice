@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, RegisterBody, UserDto } from '@angular-fire-ice/shared';
+import { ApiResponse, LoginBody, RegisterBody, UserDto } from '@angular-fire-ice/shared';
 import { environment } from '../../../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
@@ -33,6 +33,14 @@ export class AuthApiService {
     return this.http.post<void>(
       `${this.baseUrl}/${environment.authPath}/${environment.logout}`,
       {},
+      { withCredentials: true },
+    );
+  }
+
+  login(credentials: LoginBody): Observable<ApiResponse<UserDto>> {
+    return this.http.post<ApiResponse<UserDto>>(
+      `${this.baseUrl}/${environment.authPath}/login`,
+      credentials,
       { withCredentials: true },
     );
   }

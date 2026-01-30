@@ -10,6 +10,9 @@ import {
   logoutFailure,
   logoutSuccess,
   logout,
+  loginFailure,
+  loginSuccess,
+  login,
 } from './auth.actions';
 
 export const authReducer = createReducer(
@@ -55,6 +58,22 @@ export const authReducer = createReducer(
     ...initialAuthState,
   })),
   on(logoutFailure, (state, { error }) => ({
+    ...state,
+    status: 'error',
+    error,
+  })),
+  on(login, (state) => ({
+    ...state,
+    status: 'loading',
+    error: null,
+  })),
+  on(loginSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    status: 'loaded',
+    error: null,
+  })),
+  on(loginFailure, (state, { error }) => ({
     ...state,
     status: 'error',
     error,

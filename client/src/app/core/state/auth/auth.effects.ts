@@ -13,6 +13,9 @@ import {
   logout,
   logoutFailure,
   logoutSuccess,
+  login,
+  loginSuccess,
+  loginFailure,
 } from './auth.actions';
 import { ApiResponse, UserDto } from '@angular-fire-ice/shared';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -81,6 +84,31 @@ export class AuthEffects {
           map(() => logoutSuccess()),
           catchError((err: HttpErrorResponse | null) =>
             of(logoutFailure({ error: err?.error?.error ?? err?.message ?? 'Logout failed' })),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  readonly login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(login),
+      switchMap(({ credentials }) =>
+        this.api.login(credentials).pipe(
+          map((res) => {
+            if (res.success && res.data) {
+              return loginSuccess({ user: res.data });
+            }
+            return loginFailure({
+              error: res.error ?? 'Login failed',
+            });
+          }),
+          catchError((err) =>
+            of(
+              loginFailure({
+                error: err?.error?.error ?? err?.message ?? 'Login failed',
+              }),
+            ),
           ),
         ),
       ),
