@@ -4,4 +4,6 @@ export const environment = {
   booksPath: 'books',
   serverApiUrl: 'http://localhost:8080',
   favoritesPath: 'api/favorites',
+  authPath: 'api/auth',
+  register: 'register',
 } as const;

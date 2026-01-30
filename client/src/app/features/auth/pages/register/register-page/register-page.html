@@ -1,0 +1,60 @@
+<section class="register">
+  <h1>Register</h1>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      />
+      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <span class="error">Valid email is required</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="At least 6 characters"
+        autocomplete="new-password"
+        required
+      />
+      @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <span class="error">Password must be at least 6 characters</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="name">Name (optional)</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Your name"
+        autocomplete="name"
+      />
+    </div>
+
+    @if (authFacade.error()) {
+      <p class="error-message">{{ authFacade.error() }}</p>
+    }
+
+    <button type="submit" [disabled]="form.invalid || authFacade.status() === 'loading'">
+      @if (authFacade.status() === 'loading') {
+        Registering...
+      } @else {
+        Register
+      }
+    </button>
+  </form>
+
+  <p class="login-link">Already have an account? <a routerLink="/login">Log in</a></p>
+</section>

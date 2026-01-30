@@ -26,4 +26,12 @@ export const routes: Routes = [
       ),
     title: 'Favorites of Ice and Fire',
   },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/pages/register/register-page/register-page').then(
+        (m) => m.RegisterPage,
+      ),
+    title: 'Register - Ice and Fire',
+  },
 ];
