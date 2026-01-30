@@ -4,6 +4,7 @@ import { App } from './app';
 import {
   provideMockAppFacade,
   provideMockAuthFacade,
+  provideMockBooksFacade,
   provideMockFavoritesFacade,
 } from './core/testing';
 
@@ -16,6 +17,7 @@ describe('App', () => {
         provideMockAppFacade(),
         provideMockFavoritesFacade(),
         provideMockAuthFacade(),
+        provideMockBooksFacade(),
       ],
     }).compileComponents();
   });

@@ -1,0 +1,23 @@
+<div class="search-bar" (blur)="onBlur()">
+  <input
+    type="search"
+    [value]="query()"
+    (input)="onInput($any($event.target).value)"
+    placeholder="Search books..."
+    autocomplete="off"
+  />
+  @if (isOpen() && results().length > 0) {
+    <ul class="results">
+      @for (book of results(); track book.url) {
+        <li>
+          <button type="button" (mousedown)="onSelectBook(book)">
+            {{ book.name }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+  @if (isOpen() && query().length > 0 && results().length === 0) {
+    <p class="no-results">No books found</p>
+  }
+</div>
