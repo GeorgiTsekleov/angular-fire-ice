@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialBooksState } from './books.state';
-import { loadBooks, loadBooksSuccess, loadBooksFailure } from './books.actions';
+import { loadBooks, loadBooksSuccess, loadBooksFailure, setSearchQuery } from './books.actions';
 
 export const booksReducer = createReducer(
   initialBooksState,
@@ -19,5 +19,9 @@ export const booksReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(setSearchQuery, (state, { query }) => ({
+    ...state,
+    searchQuery: query.trim().toLowerCase(),
   })),
 );
