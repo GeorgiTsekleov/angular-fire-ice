@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthFacade } from '../../../../../core/services/auth/auth.facade';
+import { RedirectWhenAuthenticatedDirective } from '../../../../../shared/directives/auth-redirect.directive';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +11,10 @@ import { AuthFacade } from '../../../../../core/services/auth/auth.facade';
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [RedirectWhenAuthenticatedDirective],
 })
 export class RegisterPage {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly router = inject(Router);
   protected readonly authFacade = inject(AuthFacade);
 
   protected readonly form = this.formBuilder.nonNullable.group({
@@ -21,16 +22,6 @@ export class RegisterPage {
     password: ['', [Validators.required, Validators.minLength(6)]],
     name: [''],
   });
-
-  constructor() {
-    effect(() => {
-      const status = this.authFacade.status();
-      if (status === 'loaded') {
-        this.router.navigate(['/']);
-        alert('Registration successful');
-      }
-    });
-  }
 
   protected onSubmit(): void {
     if (this.form.invalid) return;
