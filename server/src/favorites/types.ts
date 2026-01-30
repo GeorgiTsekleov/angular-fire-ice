@@ -1,9 +1,12 @@
+import type { FavoriteBookIds } from "@angular-fire-ice/shared";
+
 export interface FavoritesApiResponse {
-  favoriteBookIds: string[];
+  favoriteBookIds: FavoriteBookIds;
 }
 
 export interface FavoritesRepository {
-  getAll(): string[];
+  getAll(): FavoriteBookIds;
   add(bookId: string): void;
   remove(bookId: string): void;
+  reset(): void;
 }

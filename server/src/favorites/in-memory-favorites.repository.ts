@@ -1,10 +1,11 @@
+import type { FavoriteBookIds } from "@angular-fire-ice/shared";
 import type { FavoritesRepository } from "./types";
 import { addToStore, removeFromStore } from "./favorites.store";
 
 export class InMemoryFavoritesRepository implements FavoritesRepository {
-  private store: string[] = [];
+  private store: FavoriteBookIds = [];
 
-  getAll(): string[] {
+  getAll(): FavoriteBookIds {
     return [...this.store];
   }
 
@@ -14,5 +15,9 @@ export class InMemoryFavoritesRepository implements FavoritesRepository {
 
   remove(bookId: string): void {
     this.store = removeFromStore(this.store, bookId);
+  }
+
+  reset(): void {
+    this.store = [];
   }
 }

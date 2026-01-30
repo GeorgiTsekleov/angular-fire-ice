@@ -14,12 +14,16 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "@angular-fire-ice/shared": "file:../shared"
+    "@angular-fire-ice/shared": "file:../shared",
+    "express-session": "^1.19.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.10",
     "@types/supertest": "^6.0.3",
