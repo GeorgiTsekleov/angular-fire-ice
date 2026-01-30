@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUser, selectAuthStatus, selectAuthError } from '../../state/auth/auth.selectors';
-import { checkAuth, register } from '../../state/auth/auth.actions';
+import { checkAuth, register, logout } from '../../state/auth/auth.actions';
 import { RegisterBody } from '@angular-fire-ice/shared';
 
 @Injectable({ providedIn: 'root' })
@@ -15,8 +15,12 @@ export class AuthFacade {
   register({ email, password, name }: RegisterBody): void {
     this.store.dispatch(register({ credentials: { email, password, name } }));
   }
-  
+
   checkAuth(): void {
     this.store.dispatch(checkAuth());
+  }
+
+  logout(): void {
+    this.store.dispatch(logout());
   }
 }

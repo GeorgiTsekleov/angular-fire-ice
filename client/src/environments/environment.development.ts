@@ -7,4 +7,5 @@ export const environment = {
   authPath: 'api/auth',
   register: 'register',
   me: 'me',
+  logout: 'logout',
 } as const;

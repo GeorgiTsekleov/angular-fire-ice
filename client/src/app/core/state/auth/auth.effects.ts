@@ -10,8 +10,12 @@ import {
   checkAuth,
   checkAuthSuccess,
   checkAuthFailure,
+  logout,
+  logoutFailure,
+  logoutSuccess,
 } from './auth.actions';
 import { ApiResponse, UserDto } from '@angular-fire-ice/shared';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class AuthEffects {
@@ -64,6 +68,20 @@ export class AuthEffects {
               }),
             );
           }),
+        ),
+      ),
+    ),
+  );
+
+  readonly logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logout),
+      switchMap(() =>
+        this.api.logout().pipe(
+          map(() => logoutSuccess()),
+          catchError((err: HttpErrorResponse | null) =>
+            of(logoutFailure({ error: err?.error?.error ?? err?.message ?? 'Logout failed' })),
+          ),
         ),
       ),
     ),

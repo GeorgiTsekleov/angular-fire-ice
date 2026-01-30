@@ -21,6 +21,6 @@ export class AuthNavComponent {
   }
 
   protected onLogout(): void {
-    console.log('logout');
+    this.authFacade.logout();
   }
 }

@@ -1,4 +1,4 @@
-import { signal, type Signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { AuthFacade } from '../services/auth/auth.facade';
 import { vi } from 'vitest';
 
@@ -13,6 +13,7 @@ export function createMockAuthFacade(overrides?: Partial<AuthFacade>): AuthFacad
     error,
     register: vi.fn(),
     checkAuth: vi.fn(),
+    logout: vi.fn(),
     ...overrides,
   } as AuthFacade;
 }
