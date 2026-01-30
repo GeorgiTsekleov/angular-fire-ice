@@ -34,4 +34,10 @@ export const routes: Routes = [
       ),
     title: 'Register - Ice and Fire',
   },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/pages/login/login-page/login-page').then((m) => m.LoginPage),
+    title: 'Log in - Ice and Fire',
+  },
 ];
