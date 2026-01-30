@@ -4,8 +4,15 @@ import { User, ApiResponse } from "@angular-fire-ice/shared";
 import type { FavoritesRepository } from "./favorites/types";
 import { InMemoryFavoritesRepository } from "./favorites/in-memory-favorites.repository";
 import { registerFavoritesRoutes } from "./favorites/favorites.routes";
+import type { UserRepository } from "./auth/types";
+import { InMemoryUserRepository } from "./auth/in-memory-user.repository";
+import session from "express-session";
+import { registerAuthRoutes } from "./auth/auth.routes";
 
-export function createApp(favoritesRepository?: FavoritesRepository): Express {
+export function createApp(
+  favoritesRepository?: FavoritesRepository,
+  userRepository?: UserRepository,
+): Express {
   const app = express();
 
   app.use((req, res, next) => {
@@ -30,6 +37,17 @@ export function createApp(favoritesRepository?: FavoritesRepository): Express {
 
   app.use(express.json());
 
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET ?? "dev-secret-change-in-production",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+      },
+    }),
+  );
+
   app.get("/", (_req, res) => {
     res.send("Hello from Express server!");
   });
@@ -49,8 +67,12 @@ export function createApp(favoritesRepository?: FavoritesRepository): Express {
     res.json(response);
   });
 
-  const repo = favoritesRepository ?? new InMemoryFavoritesRepository();
-  registerFavoritesRoutes(app, repo);
+  const favoritesRepo =
+    favoritesRepository ?? new InMemoryFavoritesRepository();
+  registerFavoritesRoutes(app, favoritesRepo);
+
+  const userRepo = userRepository ?? new InMemoryUserRepository();
+  registerAuthRoutes(app, userRepo, favoritesRepo);
 
   return app;
 }
