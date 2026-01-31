@@ -46,11 +46,8 @@ export class CharactersList {
         },
         complete: () => {
           this.loading.set(false);
-          console.log('Characters list =>>> ', this.charactersList());
         },
       });
     });
-
-    this.loading.set(false);
   }
 }
