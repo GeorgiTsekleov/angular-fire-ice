@@ -11,4 +11,6 @@ export const environment = {
   login: 'login',
   coverLibraryApiUrl: 'https://covers.openlibrary.org/b/isbn',
   imageFailFormat: 'jpg',
+  wikipediaApiUrl: 'https://en.wikipedia.org/api/rest_v1/page/summary',
+  charactersPath: 'characters',
 } as const;
