@@ -40,4 +40,20 @@ export const routes: Routes = [
       import('./features/auth/pages/login/login-page/login-page').then((m) => m.LoginPage),
     title: 'Log in - Ice and Fire',
   },
+  {
+    path: 'books/:id/chapters',
+    loadComponent: () =>
+      import('./features/chapters/pages/characters-list/chapters-list/characters-list').then(
+        (m) => m.CharactersList,
+      ),
+    title: 'Chapters of Ice and Fire',
+  },
+  {
+    path: 'books/:id/chapters/:characterId',
+    loadComponent: () =>
+      import('./features/chapters/pages/characters-details/characters-detail').then(
+        (m) => m.CharactersDetail,
+      ),
+    title: 'Chapter Detail of Ice and Fire',
+  },
 ];

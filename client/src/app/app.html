@@ -2,10 +2,12 @@
   <h1>Client App</h1>
 
   <header>
-    <nav>
+    <nav class="header-nav">
       <a routerLink="/">Home</a>
       <a routerLink="/books">Books</a>
       <a routerLink="/books/1">Books Detail 1</a>
+      <a routerLink="/books/1/chapters">Chapters List 1</a>
+      <a routerLink="/books/1/chapters/1">Chapter Detail 1</a>
       <a routerLink="/favorites">Favorites ({{ headerFavoritesCount() }})</a>
       <app-auth-nav />
       <app-search-bar />
