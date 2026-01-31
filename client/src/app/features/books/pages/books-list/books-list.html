@@ -5,7 +5,12 @@
     <ul>
       @for (book of books(); track book.url; let i = $index) {
         <li>
-          <app-book-cover [isbn]="book.isbn" [alt]="book.name" [quality]="'S'" />
+          <app-book-cover
+            (click)="onBookClick(book)"
+            [isbn]="book.isbn"
+            [alt]="book.name"
+            [quality]="'S'"
+          />
           <span>Book: {{ book?.name ?? `Book: ${i + 1}` }}</span>
           <button type="button" (click)="onToggleFavorite(book)">
             {{ isFavorite(book.url) ? '−' : '+' }}

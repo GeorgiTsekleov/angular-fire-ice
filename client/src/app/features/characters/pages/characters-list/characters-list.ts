@@ -1,12 +1,12 @@
 import { Component, computed, inject, signal, DestroyRef } from '@angular/core';
-import { CharactersCard } from '../../../../../shared/components/characters/character-card/characters-card';
-import { BooksFacade } from '../../../../../core/services/books.facade';
-import { routeParam } from '../../../../../core/utils/route-param.util';
-import { CharacterApiService } from '../../../../../core/services/api/character-api.service';
-import { Character } from '../../../../../core/models/character.model';
+import { CharactersCard } from '../../../../shared/components/characters/character-card/characters-card';
+import { BooksFacade } from '../../../../core/services/books.facade';
+import { routeParam } from '../../../../core/utils/route-param.util';
+import { CharacterApiService } from '../../../../core/services/api/character-api.service';
+import { Character } from '../../../../core/models/character.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LoadingGuard } from '../../../../../shared/components/guards/loading/loading-guard';
-import { ErrorGuard } from '../../../../../shared/components/guards/error/error-guard/error-guard';
+import { LoadingGuard } from '../../../../shared/components/guards/loading/loading-guard';
+import { ErrorGuard } from '../../../../shared/components/guards/error/error-guard/error-guard';
 
 @Component({
   selector: 'app-characters-list',

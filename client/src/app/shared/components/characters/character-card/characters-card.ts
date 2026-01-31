@@ -4,6 +4,7 @@ import {
   WikipediaApiService,
   WikipediaSummary,
 } from '../../../../core/services/api/wikipedia-api.service';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-characters-card',
@@ -47,7 +48,12 @@ export class CharactersCard {
     const characterId = this.characterId();
     const bookId = this.bookId();
     if (characterId && bookId) {
-      this.router.navigate(['/books', bookId, 'chapters', characterId]);
+      this.router.navigate([
+        `${environment.booksPath}`,
+        bookId,
+        environment.charactersPath,
+        characterId,
+      ]);
     }
   }
 }

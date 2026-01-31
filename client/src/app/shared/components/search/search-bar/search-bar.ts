@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BooksFacade } from '../../../../core/services/books.facade';
 import { Book } from '../../../../core/models';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-search-bar',
@@ -36,7 +37,7 @@ export class SearchBarComponent {
 
   protected onSelectBook(book: Book): void {
     const id = book.url.split('/').pop() ?? book.url;
-    this.router.navigate(['/books', id]);
+    this.router.navigate([`${environment.booksPath}`, id]);
     this.query.set('');
     this.isOpen.set(false);
   }

@@ -41,17 +41,17 @@ export const routes: Routes = [
     title: 'Log in - Ice and Fire',
   },
   {
-    path: 'books/:id/chapters',
+    path: 'books/:id/characters',
     loadComponent: () =>
-      import('./features/chapters/pages/characters-list/chapters-list/characters-list').then(
+      import('./features/characters/pages/characters-list/characters-list').then(
         (m) => m.CharactersList,
       ),
     title: 'Chapters of Ice and Fire',
   },
   {
-    path: 'books/:id/chapters/:characterId',
+    path: 'books/:id/characters/:characterId',
     loadComponent: () =>
-      import('./features/chapters/pages/characters-details/characters-detail').then(
+      import('./features/characters/pages/characters-details/characters-detail').then(
         (m) => m.CharactersDetail,
       ),
     title: 'Chapter Detail of Ice and Fire',
