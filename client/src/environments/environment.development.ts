@@ -9,4 +9,6 @@ export const environment = {
   me: 'me',
   logout: 'logout',
   login: 'login',
+  coverLibraryApiUrl: 'https://covers.openlibrary.org/b/isbn',
+  imageFailFormat: 'jpg',
 } as const;

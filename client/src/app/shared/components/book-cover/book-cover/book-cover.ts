@@ -1,10 +1,10 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import {
+  CoverQuality,
+  OpenLibraryApiService,
+} from '../../../../core/services/api/book-cover-api.service';
 
-interface Quality {
-  L: string;
-  M: string;
-  S: string;
-}
+type Status = 'loading' | 'loaded' | 'error';
 
 @Component({
   selector: 'app-book-cover',
@@ -15,12 +15,14 @@ interface Quality {
 export class BookCover {
   isbn = input.required<string>();
   alt = input<string>('Book cover');
-  quality = input<keyof Quality>('L' as keyof Quality);
+  quality = input<CoverQuality>('L');
 
-  protected readonly status = signal<'loading' | 'loaded' | 'error'>('loading');
+  protected readonly status = signal<Status>('loading');
 
-  protected readonly imageUrl = computed(
-    () => `https://covers.openlibrary.org/b/isbn/${this.isbn()}-${this.quality()}.jpg`,
+  private readonly coverLibrary = inject(OpenLibraryApiService);
+
+  protected readonly imageUrl = computed(() =>
+    this.coverLibrary.getCoverUrl(this.isbn(), this.quality()),
   );
 
   protected onLoad(): void {
