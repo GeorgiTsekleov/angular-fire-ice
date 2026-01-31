@@ -1,0 +1,17 @@
+<app-loading-guard [loadingInput]="loading()">
+  <app-error-guard [errorInput]="error()">
+    <app-characters-card
+      [characterName]="character()?.playedBy?.[0]"
+      [characterId]="characterId()"
+      [bookId]="bookId()"
+    />
+    @if (character(); as character) {
+      <h2>{{ character?.name }}</h2>
+
+      <p>{{ character.culture }}</p>
+      <p>{{ character.born }}</p>
+      <p>{{ character.died }}</p>
+      <p>{{ character.aliases }}</p>
+    }
+  </app-error-guard>
+</app-loading-guard>
