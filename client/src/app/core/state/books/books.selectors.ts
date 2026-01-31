@@ -8,12 +8,3 @@ export const selectBooksLoading = createSelector(selectBooksState, (state) => st
 export const selectBooksError = createSelector(selectBooksState, (state) => state.error);
 
 export const selectSearchQuery = createSelector(selectBooksState, (state) => state.searchQuery);
-
-export const selectFilteredBooksByName = createSelector(
-  selectBooks,
-  selectSearchQuery,
-  (books, query) => {
-    if (!query) return books;
-    return books.filter((book) => book.name.toLowerCase().includes(query));
-  },
-);
