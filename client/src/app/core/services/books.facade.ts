@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectBooks, selectBooksLoading, selectBooksError } from '../state/books/books.selectors';
 import { loadBooks, setSearchQuery } from '../state/books/books.actions';
+import { Book } from '../models/book.model';
 
 @Injectable({ providedIn: 'root' })
 export class BooksFacade {
@@ -17,5 +18,9 @@ export class BooksFacade {
 
   setSearchQuery(query: string): void {
     this.store.dispatch(setSearchQuery({ query }));
+  }
+
+  getBookByUrl(id: string): Book | null {
+    return this.books().find((book) => book.url.split('/').pop() === id) ?? null;
   }
 }
