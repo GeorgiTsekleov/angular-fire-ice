@@ -1,0 +1,15 @@
+<app-loading-guard [loadingInput]="loading()">
+  <app-error-guard [errorInput]="error()">
+    <ul class="characters-list">
+      @for (character of charactersList(); track character.url.split('/').pop()) {
+        <li>
+          <app-characters-card
+            [characterName]="character?.playedBy?.[0]"
+            [characterId]="character.url.split('/').pop() ?? ''"
+            [bookId]="bookId()"
+          />
+        </li>
+      }
+    </ul>
+  </app-error-guard>
+</app-loading-guard>
