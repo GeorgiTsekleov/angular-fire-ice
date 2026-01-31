@@ -4,10 +4,11 @@ import { LoadingGuard } from '../../../../shared/components/guards/loading/loadi
 import { ErrorGuard } from '../../../../shared/components/guards/error/error-guard/error-guard';
 import { Book } from '../../../../core/models';
 import { FavoritesFacade } from '../../../../core/services/favorites.facade';
+import { BookCover } from '../../../../shared/components/book-cover/book-cover/book-cover';
 
 @Component({
   selector: 'app-books-list',
-  imports: [LoadingGuard, ErrorGuard],
+  imports: [LoadingGuard, ErrorGuard, BookCover],
   templateUrl: './books-list.html',
   styleUrl: './books-list.scss',
 })
