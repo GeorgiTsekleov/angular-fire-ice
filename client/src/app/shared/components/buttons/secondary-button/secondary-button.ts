@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './secondary-button.scss',
 })
 export class SecondaryButton {
-  protected routerLink = input.required<string>();
+  routerLink = input.required<string>();
 }
