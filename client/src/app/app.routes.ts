@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    children: [],
+    loadComponent: () =>
+      import('./features/home/pages/home-page/home-page').then((m) => m.HomePage),
     title: 'Home of Ice and Fire',
   },
   {

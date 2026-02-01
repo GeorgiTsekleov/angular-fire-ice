@@ -1,0 +1,10 @@
+   @use "../../../../theme/variables.scss" as *;
+   @use "../../../../theme/mixins.scss" as *;
+
+   .test {
+       background-color: var(--bg-primary);
+
+       @include respond-to('sm') {
+           background-color: var(--bg-content-light);
+       }
+   }
