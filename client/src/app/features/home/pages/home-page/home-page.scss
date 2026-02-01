@@ -2,6 +2,10 @@
 @use "../../../../theme/mixins" as *;
 
 :host {
+  color: var(--text-primary);
+}
+
+.landing__hero {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10,9 +14,9 @@
   flex: 1;
   padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-md) var(--spacing-xl);
   background-image: url("../../../../assets/images/png/dragons-landing-01.png");
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  min-height: 100dvh;
 
   &::after {
     content: '';
