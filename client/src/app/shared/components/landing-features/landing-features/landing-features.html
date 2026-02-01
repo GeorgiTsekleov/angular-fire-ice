@@ -1,0 +1,19 @@
+<section class="landing-features" aria-labelledby="features-heading">
+  <h2 id="features-heading" class="landing-features__title">What you can explore</h2>
+  <p class="landing-features__intro">
+    Dive into the rich world of Westeros through its people, stories, and legends. Each section is
+    designed to help you explore the saga at your own pace.
+  </p>
+  
+  <ul class="landing-features__list">
+    @for (feature of features; track feature.heading) {
+      <li class="landing-features__card">
+        <div class="landing-features__card-header">
+          <lucide-icon [img]="feature.icon" class="landing-features__icon" [size]="28" />
+          <h3 class="landing-features__card-title">{{ feature.heading }}</h3>
+        </div>
+        <p class="landing-features__card-text">{{ feature.text }}</p>
+      </li>
+    }
+  </ul>
+</section>
