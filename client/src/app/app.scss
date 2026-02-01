@@ -1,5 +1,20 @@
-.header-nav {
-    a {
-        padding-inline: 0.5rem;
+:host {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+    padding: 1rem;
+
+    header {
+        a {
+            padding-inline: 0.5rem;
+        }
+    }
+
+    main {
+        min-height: 0;
+    }
+
+    footer {
+        background-color: var(--bg-surface);
     }
 }
