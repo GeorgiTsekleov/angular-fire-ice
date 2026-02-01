@@ -1,5 +1,18 @@
-.header-nav {
-    a {
-        padding-inline: 0.5rem;
-    }
-}
+   @use "./theme/variables.scss" as *;
+   @use "./theme/mixins.scss" as *;
+
+
+   .header-nav {
+       a {
+           padding-inline: 0.5rem;
+       }
+   }
+
+
+   .test {
+       background-color: var(--bg-primary);
+
+       @include respond-to('sm') {
+           background-color: var(--bg-content-light);
+       }
+   }

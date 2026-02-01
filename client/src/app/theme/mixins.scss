@@ -1,0 +1,99 @@
+@use './variables' as *;
+
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint =='xxs' {
+        @media (min-width: $breakpoint-extra-small) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xs' {
+        @media (min-width: $breakpoint-xs) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='sm' {
+        @media (min-width: $breakpoint-small) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='md' {
+        @media (min-width: $breakpoint-medium) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='lg' {
+        @media (min-width: $breakpoint-large) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xl' {
+        @media (min-width: $breakpoint-xl) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='2xl' {
+        @media (min-width: $breakpoint-2xl) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}. Use: xxs, xs, sm, md, lg, xl, 2xl";
+    }
+}
+
+
+@mixin respond-down($breakpoint) {
+    @if $breakpoint =='xxs' {
+        @media (max-width: ($breakpoint-extra-small - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xs' {
+        @media (max-width: ($breakpoint-xs - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='sm' {
+        @media (max-width: ($breakpoint-small - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='md' {
+        @media (max-width: ($breakpoint-medium - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='lg' {
+        @media (max-width: ($breakpoint-large - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xl' {
+        @media (max-width: ($breakpoint-xl - 1px)) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='2xl' {
+        @media (max-width: ($breakpoint-2xl - 1px)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}. Use: xxs, xs, sm, md, lg, xl, 2xl";
+    }
+}

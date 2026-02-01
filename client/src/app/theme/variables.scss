@@ -1,0 +1,43 @@
+// Colors
+$primary: #0d1117;
+$secondary: #34495e;
+$tertiary: #a8b2bd;
+$error: #c0392b;
+$success: #27ae60;
+$warning: #f5c518;
+$info: #3498db;
+$light: #f6f8fa;
+$dark: #24292f;
+$white: #ffffff;
+$black: #000000;
+$border: rgba(255, 255, 255, 0.1);
+
+// Breakpoints
+$breakpoint-extra-small: 375px;
+$breakpoint-xs: 419px;
+$breakpoint-small: 640px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+:root {
+    // Background Colors
+    --bg-primary: #{$primary};
+    --bg-surface: #{$secondary};
+    --bg-elevated: #{$tertiary};
+    --bg-content-light: #{$light};
+
+    // Spacing
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    // Border Radius
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+}
