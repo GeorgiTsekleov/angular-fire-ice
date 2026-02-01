@@ -28,6 +28,22 @@ $breakpoint-2xl: 1536px;
     --bg-elevated: #{$tertiary};
     --bg-content-light: #{$light};
 
+    // Accent (buttons, links)
+    --accent-primary: #{$error};
+    --accent-secondary: #{$secondary};
+    --info: #{$info};
+    --text-primary: #{$white};
+    --text-secondary: #{$tertiary};
+
+    // Typography
+    --font-main-title: 'Bebas Neue', sans-serif;
+    --font-sub-title: 'Rajdhani', sans-serif;
+    --font-paragraph: 'Inter', system-ui, sans-serif;
+    --font-button: 'Rajdhani', sans-serif;
+
+    // Border
+    --border-light: #{$border};
+
     // Spacing
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -35,9 +51,12 @@ $breakpoint-2xl: 1536px;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-
+    --spacing-3xl: 7rem;
     // Border Radius
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
     --radius-lg: 1rem;
+
+    // Transitions
+    --transition-base: 200ms ease-out;
 }

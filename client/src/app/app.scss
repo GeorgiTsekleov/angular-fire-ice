@@ -1,18 +1,36 @@
-   @use "./theme/variables.scss" as *;
-   @use "./theme/mixins.scss" as *;
+@use "theme/variables" as *;
 
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
 
-   .header-nav {
-       a {
-           padding-inline: 0.5rem;
-       }
-   }
+    position: relative;
+    background-color: var(--bg-primary);
+    min-width: $breakpoint-extra-small;
 
+    header {
+        color: var(--text-primary);
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        padding: var(--spacing-md);
 
-   .test {
-       background-color: var(--bg-primary);
+        a {
+            padding-inline: 0.5rem;
+        }
+    }
 
-       @include respond-to('sm') {
-           background-color: var(--bg-content-light);
-       }
-   }
+    main {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        padding: var(--spacing-md);
+        color: var(--text-primary);
+        border-top: 1px solid var(--border-light);
+    }
+}

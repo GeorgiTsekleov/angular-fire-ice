@@ -1,34 +1,22 @@
+<header>
+  <nav class="header-nav">
+    <a routerLink="/">Home</a>
+    <a routerLink="/books">Books</a>
+    <a routerLink="/books/1">Books Detail 1</a>
+    <a routerLink="/books/1/characters">Characters List 1</a>
+    <a routerLink="/books/1/characters/1">Character Detail 1</a>
+    <a routerLink="/favorites">Favorites ({{ headerFavoritesCount() }})</a>
+    <app-auth-nav />
+    <app-search-bar />
+  </nav>
+  <p>counter: {{ counter() }}</p>
+</header>
+
 <main>
-  <h1>Client App</h1>
-
-  <header>
-    <nav class="header-nav">
-      <a routerLink="/">Home</a>
-      <a routerLink="/books">Books</a>
-      <a routerLink="/books/1">Books Detail 1</a>
-      <a routerLink="/books/1/characters">Characters List 1</a>
-      <a routerLink="/books/1/characters/1">Character Detail 1</a>
-      <a routerLink="/favorites">Favorites ({{ headerFavoritesCount() }})</a>
-      <app-auth-nav />
-      <app-search-bar />
-    </nav>
-    <p>counter: {{ counter() }}</p>
-  </header>
-
-  <section class="body">
-    <h2>home title: {{ title() }}</h2>
-    <p>counter: {{ counter() }}</p>
-    <button (click)="incrementCounter()">Increment</button>
-    <button (click)="decrementCounter()">Decrement</button>
-    <button (click)="resetCounter()">Reset</button>
-    <div class="p-4 bg-blue-500 text-white rounded-lg">Tailwind test</div>
-    <div class="test">Test</div>
-  </section>
-
-  <footer class="footer">
-    <p>footer</p>
-    <p>counter: {{ counter() }}</p>
-  </footer>
-
   <router-outlet />
 </main>
+
+<footer class="footer">
+  <p>footer</p>
+  <p>counter: {{ counter() }}</p>
+</footer>

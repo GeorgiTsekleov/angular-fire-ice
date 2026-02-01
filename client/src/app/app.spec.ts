@@ -28,10 +28,13 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render header with navigation', async () => {
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Client App');
+    const nav = compiled.querySelector('header nav.header-nav');
+    expect(nav).toBeTruthy();
+    expect(nav?.textContent).toContain('Home');
   });
 });

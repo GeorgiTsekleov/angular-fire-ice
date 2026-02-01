@@ -1,0 +1,113 @@
+@use "../../../../theme/variables" as *;
+@use "../../../../theme/mixins" as *;
+
+.landing-features {
+  position: relative;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../../../assets/images/png/map.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        var(--bg-primary) 0%,
+        transparent 15%,
+        transparent 85%,
+        var(--bg-primary) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.landing-features__title {
+  margin: 0 0 var(--spacing-sm);
+  color: var(--text-primary);
+  font-family: var(--font-main-title);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.landing-features__intro {
+  margin: 0 0 var(--spacing-2xl);
+  max-width: 40rem;
+  font-family: var(--font-paragraph);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.landing-features__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.landing-features__card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-light);
+  backdrop-filter: blur(3px);
+}
+
+.landing-features__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.landing-features__icon {
+  flex-shrink: 0;
+  color: var(--accent-primary);
+}
+
+.landing-features__card-title {
+  margin: 0;
+  font-family: var(--font-sub-title);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.landing-features__card-text {
+  margin: 0;
+  font-family: var(--font-paragraph);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}

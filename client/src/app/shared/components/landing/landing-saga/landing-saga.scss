@@ -1,0 +1,92 @@
+@use "../../../../theme/variables" as *;
+@use "../../../../theme/mixins" as *;
+
+.saga {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+
+}
+
+.saga__intro {
+  margin: 0 0 var(--spacing-2xl);
+  text-align: center;
+  font-family: var(--font-paragraph);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.saga__scroll {
+  width: 100%;
+  max-width: 72rem;
+  margin-bottom: var(--spacing-2xl);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.saga__list {
+  display: flex;
+  gap: var(--spacing-lg);
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  min-width: min-content;
+}
+
+.saga__item {
+  width: 85%;
+  max-width: 12rem;
+
+  @include respond-to(md) {
+    width: calc(50% - var(--spacing-lg) / 2);
+    max-width: 14rem;
+  }
+
+  @include respond-to(lg) {
+    width: calc(25% - var(--spacing-lg) * 3 / 4);
+    max-width: 11rem;
+  }
+}
+
+.saga__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform var(--transition-base);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.saga__cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-light)
+}
+
+.saga__book-name {
+  font-family: var(--font-sub-title);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.saga__actions {
+  display: flex;
+  justify-content: center;
+}
