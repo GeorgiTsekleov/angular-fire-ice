@@ -1,35 +1,11 @@
-import { Component, computed, inject } from '@angular/core';
-import { FavoritesFacade } from '../../../../core/services/favorites.facade';
-import { AppFacade } from '../../../../core/services/app.facade';
+import { Component } from '@angular/core';
+import { PrimaryButton } from '../../../../shared/components/buttons/primary-button/primary-button';
+import { SecondaryButton } from '../../../../shared/components/buttons/secondary-button/secondary-button';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [PrimaryButton, SecondaryButton],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage {
-  private appFacade = inject(AppFacade);
-  protected readonly title = this.appFacade.title;
-  protected readonly counter = this.appFacade.counter;
-
-  protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
-
-  private favoritesFacade = inject(FavoritesFacade);
-
-  constructor() {
-    this.favoritesFacade.loadFavorites();
-  }
-
-  incrementCounter() {
-    this.appFacade.incrementCounter();
-  }
-
-  decrementCounter() {
-    this.appFacade.decrementCounter();
-  }
-
-  resetCounter() {
-    this.appFacade.resetCounter();
-  }
-}
+export class HomePage {}

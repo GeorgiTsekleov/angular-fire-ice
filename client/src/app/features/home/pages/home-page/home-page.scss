@@ -1,10 +1,89 @@
-   @use "../../../../theme/variables.scss" as *;
-   @use "../../../../theme/mixins.scss" as *;
+@use "../../../../theme/variables" as *;
+@use "../../../../theme/mixins" as *;
 
-   .test {
-       background-color: var(--bg-primary);
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-md) var(--spacing-xl);
+  background-image: url("../../../../assets/images/png/dragons-landing-01.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-       @include respond-to('sm') {
-           background-color: var(--bg-content-light);
-       }
-   }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--bg-primary) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.landing__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(13, 17, 23, 0.5) 0%,
+      rgba(13, 17, 23, 0.3) 30%,
+      rgba(13, 17, 23, 0.5) 70%);
+  pointer-events: none;
+}
+
+.landing__title,
+.landing__actions {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.landing__title {
+  margin: 0 0 var(--spacing-2xl);
+  font-family: var(--font-main-title);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+}
+
+.landing__title-accent {
+  display: block;
+  margin-top: 0.15em;
+  font-size: 1.15em;
+  letter-spacing: 0.04em;
+}
+
+.landing__actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  max-width: 40rem;
+  width: 100%;
+}
+
+.landing__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.landing__text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
