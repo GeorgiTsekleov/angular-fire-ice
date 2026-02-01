@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { LandingCharacters } from '../../../../shared/components/landing-characters/landing-characters/landing-characters';
+import { LandingFeatures } from '../../../../shared/components/landing-features/landing-features/landing-features';
+import { LandingSaga } from '../../../../shared/components/landing-saga/landing-saga/landing-saga';
 import { PrimaryButton } from '../../../../shared/components/buttons/primary-button/primary-button';
 import { SecondaryButton } from '../../../../shared/components/buttons/secondary-button/secondary-button';
 
 @Component({
   selector: 'app-home-page',
-  imports: [PrimaryButton, SecondaryButton],
+  imports: [LandingCharacters, LandingFeatures, LandingSaga, PrimaryButton, SecondaryButton],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

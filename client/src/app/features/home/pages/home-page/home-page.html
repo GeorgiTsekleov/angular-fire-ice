@@ -1,18 +1,26 @@
-<div class="landing__overlay" aria-hidden="true"></div>
+<section class="landing__hero">
+  <div class="landing__overlay" aria-hidden="true"></div>
 
-<h1 class="landing__title">
-  Explore the world of<br />
-  <span class="landing__title-accent">Ice & Fire</span>
-</h1>
+  <h1 class="landing__title">
+    Explore the world of<br />
+    <span class="landing__title-accent">Ice & Fire</span>
+  </h1>
 
-<div class="landing__actions">
-  <p class="landing__text">
-    Enter a realm where dragons soar, White Walkers lurk, and strange monsters roam the shadows.
-    Discover the characters and epic tales from <br />"A Song of Ice and Fire".
-  </p>
+  <div class="landing__actions">
+    <p class="landing__text">
+      Enter a realm where dragons soar, White Walkers lurk, and strange monsters roam the shadows.
+      Discover the characters and epic tales from <br />"A Song of Ice and Fire".
+    </p>
 
-  <div class="landing__buttons">
-    <app-primary-button routerLink="/books/1/characters"> Characters </app-primary-button>
-    <app-secondary-button routerLink="/books"> Books </app-secondary-button>
+    <div class="landing__buttons">
+      <app-primary-button routerLink="/books/1/characters"> Characters </app-primary-button>
+      <app-secondary-button routerLink="/books"> Books </app-secondary-button>
+    </div>
   </div>
-</div>
+</section>
+
+<app-landing-saga />
+
+<app-landing-features />
+
+<app-landing-characters />
