@@ -2,9 +2,28 @@
 @use "../../../../theme/mixins" as *;
 
 .landing-features {
+  position: relative;
   padding: var(--spacing-2xl) var(--spacing-lg);
   background-color: var(--bg-primary);
   color: var(--text-primary);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../../../assets/images/png/map.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .landing-features__title {
@@ -46,7 +65,8 @@
   flex-direction: column;
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-light);
+  border: 2px solid var(--border-light);
+  backdrop-filter: blur(3px);
 }
 
 .landing-features__card-header {
