@@ -1,0 +1,13 @@
+@use "../../../../theme/variables" as *;
+@use "../button.scss" as *;
+
+.btn--primary {
+  @extend .btn;
+
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}

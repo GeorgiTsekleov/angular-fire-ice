@@ -1,0 +1,15 @@
+@use "../../../../theme/variables" as *;
+@use "../button.scss" as *;
+
+.btn--secondary {
+  @extend .btn;
+
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--text-primary);
+
+  &:hover {
+    background-color: var(--text-primary);
+    color: var(--accent-primary);
+  }
+}
