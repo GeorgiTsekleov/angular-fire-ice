@@ -1,7 +1,16 @@
+:host {
+    border-radius: var(--radius-lg);
+}
+
 .book-cover {
     position: relative;
-    border-radius: 0.25rem;
+   
     min-height: 4rem;
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .placeholder,
