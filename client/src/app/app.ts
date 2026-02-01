@@ -4,7 +4,7 @@ import { AppFacade } from './core/services/app.facade';
 import { FavoritesFacade } from './core/services/favorites.facade';
 import { AuthNavComponent } from './shared/components/auth-nav/auth-nav/auth-nav';
 import { SearchBarComponent } from './shared/components/search/search-bar/search-bar';
-import { BooksFacade } from './core/services/books.facade';
+// import { BooksFacade } from './core/services/books.facade';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class App {
   protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
 
   private favoritesFacade = inject(FavoritesFacade);
-  private booksFacade = inject(BooksFacade);
+  // private booksFacade = inject(BooksFacade);
 
   constructor() {
     this.favoritesFacade.loadFavorites();

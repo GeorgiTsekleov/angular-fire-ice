@@ -6,7 +6,8 @@
     placeholder="Search books..."
     autocomplete="off"
   />
-  @if (isOpen() && results().length > 0) {
+
+  @if (isOpen()) {
     <ul class="results">
       @for (book of results(); track book.url) {
         <li>
@@ -17,7 +18,8 @@
       }
     </ul>
   }
-  @if (isOpen() && query().length > 0 && results().length === 0) {
+
+  @if (isOpen() && results().length === 0) {
     <p class="no-results">No books found</p>
   }
 </div>

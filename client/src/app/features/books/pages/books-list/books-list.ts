@@ -4,17 +4,20 @@ import { LoadingGuard } from '../../../../shared/components/guards/loading/loadi
 import { ErrorGuard } from '../../../../shared/components/guards/error/error-guard/error-guard';
 import { Book } from '../../../../core/models';
 import { FavoritesFacade } from '../../../../core/services/favorites.facade';
+import { BookCover } from '../../../../shared/components/book-cover/book-cover/book-cover';
+import { Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-books-list',
-  imports: [LoadingGuard, ErrorGuard],
+  imports: [LoadingGuard, ErrorGuard, BookCover],
   templateUrl: './books-list.html',
   styleUrl: './books-list.scss',
 })
 export class BooksList {
   protected readonly booksFacade = inject(BooksFacade);
   protected readonly favoritesFacade = inject(FavoritesFacade);
-
+  protected readonly router = inject(Router);
   protected readonly books = computed(() => this.booksFacade.books() ?? []);
 
   protected readonly isFavorite = (bookId: string): boolean => {
@@ -30,6 +33,7 @@ export class BooksList {
   }
 
   protected readonly onBookClick = (book: Book) => {
-    console.log(`Book clicked: ${book.name}`);
+    const id = book.url.split('/').pop() ?? book.url;
+    this.router.navigate([`${environment.booksPath}`, id]);
   };
 }

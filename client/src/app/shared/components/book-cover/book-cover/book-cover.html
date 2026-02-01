@@ -1,0 +1,16 @@
+<div class="book-cover">
+  @if (status() === 'loading') {
+    <div class="placeholder">Loading image...</div>
+  }
+  @if (status() === 'error') {
+    <div class="fallback">No cover available</div>
+  }
+  <img
+    [src]="imageUrl()"
+    [alt]="alt()"
+    (load)="onLoad()"
+    (error)="onError()"
+    [class.visible]="status() === 'loaded'"
+    loading="lazy"
+  />
+</div>

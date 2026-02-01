@@ -1,8 +1,9 @@
-import { Component, inject, signal, computed, effect } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BooksFacade } from '../../../../core/services/books.facade';
 import { Book } from '../../../../core/models';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-search-bar',
@@ -25,15 +26,8 @@ export class SearchBarComponent {
     return books.filter((b) => b.name.toLowerCase().includes(q));
   });
 
-  // In SearchBarComponent
   constructor() {
-    this.booksFacade.loadBooks(); // add this
-    // Ensure books are loaded when user focuses search
-    effect(() => {
-      if (this.query().length > 0 && (this.booksFacade.books()?.length ?? 0) === 0) {
-        this.booksFacade.loadBooks(1, 50); // load more for search
-      }
-    });
+    this.booksFacade.loadBooks();
   }
 
   protected onInput(value: string): void {
@@ -43,12 +37,12 @@ export class SearchBarComponent {
 
   protected onSelectBook(book: Book): void {
     const id = book.url.split('/').pop() ?? book.url;
-    this.router.navigate(['/books', id]);
+    this.router.navigate([`${environment.booksPath}`, id]);
     this.query.set('');
     this.isOpen.set(false);
   }
 
   protected onBlur(): void {
-    setTimeout(() => this.isOpen.set(false), 150);
+    setTimeout(() => this.isOpen.set(false), 1000);
   }
 }
