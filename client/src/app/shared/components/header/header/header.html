@@ -1,0 +1,100 @@
+<header class="flex w-full flex-col gap-2 px-4 py-3">
+  <div class="flex w-full items-center justify-between gap-4">
+    <a
+      routerLink="/"
+      class="flex shrink-0 items-center"
+      (click)="onHeaderClick('logo')"
+      aria-label="Home"
+    >
+      <img
+        src="/assets/images/png/if-logo-3.png"
+        alt="Ice & Fire"
+        class="h-20 w-20 rounded-full object-contain"
+      />
+    </a>
+
+    <div
+      class="flex shrink-0 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2"
+    >
+      <a
+        routerLink="/favorites"
+        class="relative rounded-full p-2 text-white transition hover:bg-white/10"
+        (click)="onHeaderClick('favorites icon')"
+        aria-label="Favorites"
+      >
+        <lucide-icon [img]="heartIcon" [size]="30" />
+        @if (favoritesCount() > 0) {
+        <span
+          class="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-medium text-white"
+        >
+          {{ favoritesCount() }}
+        </span>
+        }
+      </a>
+
+      <app-search-bar />
+
+      @if (!isAuthenticated()) {
+      <a
+        routerLink="/login"
+        class="rounded-full p-2 text-white transition hover:bg-white/10"
+        (click)="onHeaderClick('login icon')"
+        aria-label="Log in"
+      >
+        <lucide-icon [img]="loginIcon" [size]="30" />
+      </a>
+      } @else {
+      <button
+        type="button"
+        class="rounded-lg p-2 text-white transition hover:bg-white/10"
+        (click)="toggleUserMenu()"
+        aria-label="User menu"
+        [attr.aria-expanded]="userMenuOpen()"
+      >
+        <lucide-icon [img]="userIcon" [size]="30" />
+      </button>
+      @if (userMenuOpen()) {
+      <div
+        class="absolute right-0 top-full z-10 mt-2 w-56 rounded-ful border border-white/10 bg-gray-800 py-3 shadow-lg"
+        role="menu"
+      >
+        <div class="flex items-center gap-3 px-4 pb-3">
+          <lucide-icon [img]="userIcon" [size]="32" class="text-white" />
+          <span class="text-sm font-medium text-white">
+            {{ user()?.name ?? user()?.email ?? 'User' }}
+          </span>
+        </div>
+
+        <div class="border-t border-white/10 px-2 pt-2">
+          <button
+            type="button"
+            class="w-full rounded-md bg-red-600 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-red-700"
+            (click)="logout()"
+          >
+            Log Out
+          </button>
+        </div>
+      </div>
+      } }
+    </div>
+
+    <button
+      type="button"
+      class="flex shrink-0 rounded-full p-2 text-white transition hover:bg-white/10 cursor-pointer"
+      (click)="onHeaderClick('navigation')"
+      aria-label="Navigation"
+    >
+      <lucide-icon [img]="menuIcon" [size]="30" />
+    </button>
+  </div>
+
+  <nav class="header-nav px-4 pb-2">
+    <a routerLink="/">Home</a>
+    <a routerLink="/books">Books</a>
+    <a routerLink="/books/1">Books Detail 1</a>
+    <a routerLink="/books/1/characters">Characters List 1</a>
+    <a routerLink="/books/1/characters/1">Character Detail 1</a>
+    <a routerLink="/favorites">Favorites ({{ favoritesCount() }})</a>
+  </nav>
+  <p class="px-4">counter: {{ counter() }}</p>
+</header>
