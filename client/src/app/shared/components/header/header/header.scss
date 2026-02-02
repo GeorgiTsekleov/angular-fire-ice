@@ -1,0 +1,28 @@
+@import "../../../../theme/mixins.scss";
+@import "../../../../theme/variables.scss";
+
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+
+  @include respond-to(md) {
+    flex-direction: row-reverse;
+  }
+}
+
+.favorites__count {
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+}

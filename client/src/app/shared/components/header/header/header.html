@@ -1,0 +1,39 @@
+<header class="flex w-full flex-col gap-2 px-4 py-3">
+  <div class="flex w-full items-center justify-between gap-4">
+    <a routerLink="/" class="flex shrink-0 items-center" aria-label="Home">
+      <img
+        src="/assets/images/png/if-logo-3.png"
+        alt="Ice & Fire"
+        class="h-20 w-20 rounded-lg object-contain"
+      />
+    </a>
+
+    <section class="nav__links">
+      <div
+        class="flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 p-2"
+      >
+        <a
+          routerLink="/favorites"
+          class="relative rounded-lg p-2 text-white transition hover:bg-white/10"
+          aria-label="Favorites"
+        >
+          <lucide-icon [img]="heartIcon" [size]="30" />
+          
+          @if (favoritesCount() > 0) {
+          <span
+            class="favorites__count absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-lg"
+          >
+            {{ favoritesCount() }}
+          </span>
+          }
+        </a>
+
+        <app-search-bar />
+
+        <app-header-auth />
+      </div>
+
+      <app-header-nav [favoritesCount]="favoritesCount()" />
+    </section>
+  </div>
+</header>

@@ -1,0 +1,9 @@
+@import '../../../../theme/variables.scss';
+
+:host {
+  display: contents;
+}
+
+.user__auth__menu {
+  backdrop-filter: var(--glass-blur);
+}

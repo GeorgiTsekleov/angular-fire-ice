@@ -1,0 +1,33 @@
+@import '../../../../theme/mixins.scss';
+@import '../../../../theme/variables.scss';
+
+:host {
+  display: contents;
+}
+
+.nav__desktop {
+  display: none;
+
+  .nav__desktop__link {
+    margin-inline: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+
+    &:hover {
+      border-bottom: 1px solid var(--text-primary);
+    }
+  }
+}
+
+.nav__mobile {
+  display: block;
+}
+
+@include respond-to(md) {
+  .nav__desktop {
+    display: block;
+  }
+
+  .nav__mobile {
+    display: none;
+  }
+}

@@ -1,0 +1,69 @@
+<nav class="nav__desktop items-center gap-4 md:flex" aria-label="Main navigation">
+  @for (item of navItems; track item.routerLink) {
+  <a
+    [routerLink]="item.routerLink"
+    routerLinkActive="text-white font-medium"
+    [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+    class="nav__desktop__link"
+    (click)="onNavLinkClick()"
+  >
+    {{ item.label }}
+  </a>
+  }
+</nav>
+
+<div
+  class="nav__mobile fixed inset-0 z-40 bg-black/50 transition-opacity duration-300"
+  [class.pointer-events-none]="!isOpen()"
+  [class.opacity-0]="!isOpen()"
+  [class.opacity-100]="isOpen()"
+  (click)="isOpen.set(!isOpen())"
+  aria-hidden="true"
+></div>
+
+<div
+  class="nav__mobile fixed top-0 right-0 z-50 flex h-full w-64 flex-col border-l border-white/10 bg-gray-900 shadow-lg transition-transform duration-300"
+  [class.translate-x-0]="isOpen()"
+  [class.translate-x-full]="!isOpen()"
+  role="dialog"
+  [attr.aria-modal]="isOpen()"
+  aria-label="Navigation menu"
+>
+  <div class="flex items-center justify-between border-b border-white/10 px-4 py-3">
+    <span class="text-sm font-medium text-white">Menu</span>
+    <button
+      type="button"
+      class="rounded-lg p-2 text-white transition hover:bg-white/10"
+      (click)="onNavLinkClick()"
+      aria-label="Close menu"
+    >
+      <lucide-icon [img]="closeIcon" [size]="20" />
+    </button>
+  </div>
+
+  <nav class="flex flex-1 flex-col gap-1 overflow-auto p-4" aria-label="Main navigation">
+    @for (item of navItems; track item.routerLink) {
+    <a
+      [routerLink]="item.routerLink"
+      routerLinkActive="bg-white/10 text-white"
+      [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+      class="rounded-md px-3 py-2 text-sm text-white/90 transition hover:bg-white/10 hover:text-white"
+      (click)="onNavLinkClick()"
+    >
+      {{ item.label }}
+      @if (item.routerLink === '/favorites' && favoritesCount() > 0) {
+      <span class="ml-1">({{ favoritesCount() }})</span>
+      }
+    </a>
+    }
+  </nav>
+</div>
+
+<button
+  type="button"
+  class="nav__mobile flex shrink-0 cursor-pointer rounded-lg p-2 text-white transition hover:bg-white/10"
+  aria-label="Open navigation menu"
+  (click)="onNavLinkClick()"
+>
+  <lucide-icon [img]="menuIcon" [size]="30" />
+</button>

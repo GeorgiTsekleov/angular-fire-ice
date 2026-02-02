@@ -1,22 +1,10 @@
-<header>
-  <nav class="header-nav">
-    <a routerLink="/">Home</a>
-    <a routerLink="/books">Books</a>
-    <a routerLink="/books/1">Books Detail 1</a>
-    <a routerLink="/books/1/characters">Characters List 1</a>
-    <a routerLink="/books/1/characters/1">Character Detail 1</a>
-    <a routerLink="/favorites">Favorites ({{ headerFavoritesCount() }})</a>
-    <app-auth-nav />
-    <app-search-bar />
-  </nav>
-  <p>counter: {{ counter() }}</p>
-</header>
+<app-header />
 
-<main>
+<main [class.home__page]="!isHomePage()">
   <router-outlet />
 </main>
 
 <footer class="footer">
   <p>footer</p>
-  <p>counter: {{ counter() }}</p>
+  <!-- <p>counter: {{ counter() }}</p> -->
 </footer>
