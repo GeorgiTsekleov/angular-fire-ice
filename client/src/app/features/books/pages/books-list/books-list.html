@@ -1,22 +1,19 @@
-<p>books-list works!</p>
-
 <app-loading-guard [loadingInput]="booksFacade.loading()">
   <app-error-guard [errorInput]="booksFacade.error()">
-    <ul>
-      @for (book of books(); track book.url; let i = $index) {
-        <li>
-          <app-book-cover
-            (click)="onBookClick(book)"
-            [isbn]="book.isbn"
-            [alt]="book.name"
-            [quality]="'S'"
-          />
-          <span>Book: {{ book?.name ?? `Book: ${i + 1}` }}</span>
-          <button type="button" (click)="onToggleFavorite(book)">
-            {{ isFavorite(book.url) ? '−' : '+' }}
-          </button>
-        </li>
+    <app-content-card-wrapper>
+      @for (book of books(); track book.url) {
+      <app-content-card
+        [title]="book.name"
+        [subtitle]="getSubtitle(book)"
+        [description]="getDescription(book)"
+        [isbn]="book.isbn"
+        [isFavorite]="isFavorite(book.url)"
+        [showActionButton]="false"
+        [alt]="book.name"
+        (favoriteClick)="onToggleFavorite(book)"
+        (cardClick)="onCardClick(book)"
+      />
       }
-    </ul>
+    </app-content-card-wrapper>
   </app-error-guard>
 </app-loading-guard>
