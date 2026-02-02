@@ -9,6 +9,7 @@ export function createMockBooksFacade(overrides?: Partial<BooksFacade>): BooksFa
     loading: (overrides?.loading as Signal<boolean>) ?? signal(false),
     error: (overrides?.error as Signal<string | null>) ?? signal(null),
     loadBooks: vi.fn(),
+    getBookByUrl: overrides?.getBookByUrl ?? vi.fn(() => null),
     ...overrides,
   } as BooksFacade;
 }
