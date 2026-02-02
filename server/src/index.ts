@@ -67,11 +67,11 @@ export function createApp(
     res.json(response);
   });
 
+  const userRepo = userRepository ?? new InMemoryUserRepository();
+  registerFavoritesRoutes(app, userRepo);
+
   const favoritesRepo =
     favoritesRepository ?? new InMemoryFavoritesRepository();
-  registerFavoritesRoutes(app, favoritesRepo);
-
-  const userRepo = userRepository ?? new InMemoryUserRepository();
   authRoutes(app, userRepo, favoritesRepo);
 
   return app;
