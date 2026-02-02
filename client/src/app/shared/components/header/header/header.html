@@ -4,48 +4,36 @@
       <img
         src="/assets/images/png/if-logo-3.png"
         alt="Ice & Fire"
-        class="h-20 w-20 rounded-full object-contain"
+        class="h-20 w-20 rounded-lg object-contain"
       />
     </a>
 
-    <div
-      class="flex shrink-0 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2"
-    >
-      <a
-        routerLink="/favorites"
-        class="relative rounded-full p-2 text-white transition hover:bg-white/10"
-        aria-label="Favorites"
+    <section class="nav__links">
+      <div
+        class="flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 p-2"
       >
-        <lucide-icon [img]="heartIcon" [size]="30" />
-        @if (favoritesCount() > 0) {
-        <span
-          class="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-medium text-white"
+        <a
+          routerLink="/favorites"
+          class="relative rounded-lg p-2 text-white transition hover:bg-white/10"
+          aria-label="Favorites"
         >
-          {{ favoritesCount() }}
-        </span>
-        }
-      </a>
+          <lucide-icon [img]="heartIcon" [size]="30" />
+          
+          @if (favoritesCount() > 0) {
+          <span
+            class="favorites__count absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-lg"
+          >
+            {{ favoritesCount() }}
+          </span>
+          }
+        </a>
 
-      <app-search-bar />
+        <app-search-bar />
 
-      <app-header-auth />
-    </div>
+        <app-header-auth />
+      </div>
 
-    <button
-      type="button"
-      class="flex shrink-0 rounded-full p-2 text-white transition hover:bg-white/10 cursor-pointer"
-      aria-label="Navigation"
-    >
-      <lucide-icon [img]="menuIcon" [size]="30" />
-    </button>
+      <app-header-nav [favoritesCount]="favoritesCount()" />
+    </section>
   </div>
-
-  <!-- <nav class="header-nav px-4 pb-2">
-    <a routerLink="/">Home</a>
-    <a routerLink="/books">Books</a>
-    <a routerLink="/books/1">Books Detail 1</a>
-    <a routerLink="/books/1/characters">Characters List 1</a>
-    <a routerLink="/books/1/characters/1">Character Detail 1</a>
-    <a routerLink="/favorites">Favorites ({{ favoritesCount() }})</a>
-  </nav> -->
 </header>
