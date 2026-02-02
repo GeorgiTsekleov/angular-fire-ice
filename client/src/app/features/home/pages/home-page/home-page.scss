@@ -16,7 +16,8 @@
   background-image: url("../../../../assets/images/png/dragons-landing-01.png");
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100dvh;
+  background-size: cover;
+  height: min(100dvh, $breakpoint-large);
 
   &::after {
     content: '';
