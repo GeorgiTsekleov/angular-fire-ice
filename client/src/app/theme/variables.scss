@@ -51,7 +51,7 @@ $breakpoint-2xl: 1536px;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    --spacing-3xl: 7rem;
+    --spacing-3xl: 8rem;
     // Border Radius
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
@@ -59,4 +59,9 @@ $breakpoint-2xl: 1536px;
 
     // Transitions
     --transition-base: 200ms ease-out;
+
+    // Glassmorphism
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-blur: blur(10px);
+    --glass-border: rgba(255, 255, 255, 0.1);
 }

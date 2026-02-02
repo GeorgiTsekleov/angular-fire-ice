@@ -1,26 +1,34 @@
-import { Component, computed, inject } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { NavigationEnd, RouterOutlet } from '@angular/router';
 import { AppFacade } from './core/services/app.facade';
-import { FavoritesFacade } from './core/services/favorites.facade';
-import { AuthNavComponent } from './shared/components/auth-nav/auth-nav/auth-nav';
-import { SearchBarComponent } from './shared/components/search/search-bar/search-bar';
+import { HeaderComponent } from './shared/components/header/header/header';
+import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs/operators';
+
+const HOME_PAGE_URL = '/';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, AuthNavComponent, SearchBarComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  private appFacade = inject(AppFacade);
+  private readonly appFacade = inject(AppFacade);
   protected readonly title = this.appFacade.title;
-  protected readonly counter = this.appFacade.counter;
-
-  protected readonly headerFavoritesCount = computed(() => this.favoritesFacade.favoritesCount());
-
-  private favoritesFacade = inject(FavoritesFacade);
+  private readonly router = inject(Router);
+  protected readonly isHomePage = signal<boolean>(false);
 
   constructor() {
-    this.favoritesFacade.loadFavorites();
+    this.isHomePage.set(this.router.url === HOME_PAGE_URL);
+    this.router.events
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed()
+      )
+      .subscribe(() => {
+        this.isHomePage.set(this.router.url === HOME_PAGE_URL);
+      });
   }
 }
