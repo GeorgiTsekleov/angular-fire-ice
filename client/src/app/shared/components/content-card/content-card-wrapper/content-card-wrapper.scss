@@ -1,0 +1,7 @@
+@use "../../../../theme/variables.scss" as *;
+
+.page__list__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-md);
+}

@@ -1,0 +1,51 @@
+<li>
+  <article
+    class="content-card"
+    role="button"
+    tabindex="0"
+    (click)="onCardClick()"
+    (keydown.enter)="onCardClick()"
+    (keydown.space)="onCardClick()"
+  >
+    <div class="content-card__media">
+      @if (isbn()) {
+      <app-book-cover [isbn]="isbn()!" [alt]="alt() || title()" quality="M" />
+      } @else if (imageUrl()) {
+      <img [src]="imageUrl()" [alt]="alt() || title()" class="content-card__img" loading="lazy" />
+      } @else {
+      <div class="content-card__placeholder">No image</div>
+      }
+    </div>
+
+    <div class="content-card__body">
+      <h3 class="content-card__title">{{ title() }}</h3>
+      @if (subtitle()) {
+      <p class="content-card__subtitle">{{ subtitle() }}</p>
+      } @if (description()) {
+      <p class="content-card__description">{{ description() }}</p>
+      }
+    </div>
+
+    <div class="content-card__actions">
+      <button
+        type="button"
+        class="content-card__btn content-card__btn--heart"
+        [class.content-card__btn--heart-filled]="isFavorite()"
+        [attr.aria-label]="isFavorite() ? 'Remove from favorites' : 'Add to favorites'"
+        (click)="onFavoriteClick($event)"
+      >
+        <lucide-icon [img]="heartIcon" [size]="24" />
+      </button>
+      @if (showActionButton()) {
+      <button
+        type="button"
+        class="content-card__btn content-card__btn--action"
+        aria-label="More options"
+        (click)="onActionClick($event)"
+      >
+        <lucide-icon [img]="chevronIcon" [size]="20" />
+      </button>
+      }
+    </div>
+  </article>
+</li>
