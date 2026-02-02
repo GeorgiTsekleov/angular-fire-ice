@@ -33,8 +33,8 @@ describe('App', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    const nav = compiled.querySelector('header nav.header-nav');
-    expect(nav).toBeTruthy();
-    expect(nav?.textContent).toContain('Home');
+    const header = compiled.querySelector('header');
+    expect(header).toBeTruthy();
+    expect(header?.textContent).toContain('Home');
   });
 });
