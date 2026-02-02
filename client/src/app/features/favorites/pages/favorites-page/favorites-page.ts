@@ -37,7 +37,6 @@ export class FavoritesPage {
   });
 
   ngOnInit(): void {
-    this.favoritesFacade.loadFavorites();
     this.booksFacade.loadBooks();
   }
 

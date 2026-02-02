@@ -1,5 +1,5 @@
 import type { Express } from "express";
-import type { FavoritesRepository } from "./types";
+import type { UserRepository } from "../auth/types";
 import {
   getFavorites,
   addFavorite,
@@ -8,11 +8,15 @@ import {
 
 export function registerFavoritesRoutes(
   app: Express,
-  repository: FavoritesRepository,
+  userRepository: UserRepository,
 ): void {
-  app.get("/api/favorites", (req, res) => getFavorites(req, res, repository));
-  app.post("/api/favorites", (req, res) => addFavorite(req, res, repository));
+  app.get("/api/favorites", (req, res) =>
+    getFavorites(req, res, userRepository),
+  );
+  app.post("/api/favorites", (req, res) =>
+    addFavorite(req, res, userRepository),
+  );
   app.delete("/api/favorites/:bookId", (req, res) =>
-    removeFavorite(req, res, repository),
+    removeFavorite(req, res, userRepository),
   );
 }

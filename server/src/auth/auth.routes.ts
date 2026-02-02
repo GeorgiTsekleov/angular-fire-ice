@@ -17,6 +17,6 @@ export function authRoutes(
   app.post("/api/auth/login", (req, res) =>
     loginHandler(req, res, userRepository, favoritesRepository),
   );
-  app.get("/api/auth/me", (req, res) => getMe(req, res, userRepository, ));
-  app.post("/api/auth/logout", logout);
+  app.get("/api/auth/me", (req, res) => getMe(req, res, userRepository));
+  app.post("/api/auth/logout", (req, res) => logout(req, res));
 }

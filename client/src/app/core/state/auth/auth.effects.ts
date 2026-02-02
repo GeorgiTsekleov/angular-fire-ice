@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { AuthApiService } from '../../services/api/auth-api.service';
 import {
   register,
@@ -17,6 +18,8 @@ import {
   loginSuccess,
   loginFailure,
 } from './auth.actions';
+import { loadFavoritesSuccess } from '../favorites/favorites.actions';
+import { selectFavoriteBookIds } from '../favorites/favorites.selectors';
 import { ApiResponse, UserDto } from '@angular-fire-ice/shared';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -24,6 +27,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AuthEffects {
   private readonly actions$ = inject(Actions);
   private readonly api = inject(AuthApiService);
+  private readonly store = inject(Store);
 
   readonly register$ = createEffect(() =>
     this.actions$.pipe(
@@ -42,12 +46,12 @@ export class AuthEffects {
             of(
               registerFailure({
                 error: err?.error?.error ?? err?.message ?? 'Registration failed',
-              }),
-            ),
-          ),
-        ),
-      ),
-    ),
+              })
+            )
+          )
+        )
+      )
+    )
   );
 
   readonly checkAuth$ = createEffect(() =>
@@ -68,12 +72,12 @@ export class AuthEffects {
             return of(
               checkAuthFailure({
                 error: err?.error?.error ?? err?.message ?? 'Failed to check auth',
-              }),
+              })
             );
-          }),
-        ),
-      ),
-    ),
+          })
+        )
+      )
+    )
   );
 
   readonly logout$ = createEffect(() =>
@@ -83,11 +87,11 @@ export class AuthEffects {
         this.api.logout().pipe(
           map(() => logoutSuccess()),
           catchError((err: HttpErrorResponse | null) =>
-            of(logoutFailure({ error: err?.error?.error ?? err?.message ?? 'Logout failed' })),
-          ),
-        ),
-      ),
-    ),
+            of(logoutFailure({ error: err?.error?.error ?? err?.message ?? 'Logout failed' }))
+          )
+        )
+      )
+    )
   );
 
   readonly login$ = createEffect(() =>
@@ -107,11 +111,34 @@ export class AuthEffects {
             of(
               loginFailure({
                 error: err?.error?.error ?? err?.message ?? 'Login failed',
-              }),
-            ),
-          ),
-        ),
-      ),
-    ),
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  readonly seedFavoritesFromAuth$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(checkAuthSuccess, loginSuccess, logoutSuccess),
+      withLatestFrom(this.store.select(selectFavoriteBookIds)),
+      filter(([action, currentIds]) => {
+        if (action.type === logoutSuccess.type) return true;
+        if (action.type === loginSuccess.type) return true;
+        if (action.type === checkAuthSuccess.type) {
+          const hasUser = 'user' in action && action.user != null;
+          if (!hasUser) return true;
+          return currentIds.length === 0;
+        }
+        
+        return false;
+      }),
+      map(([action]) =>
+        loadFavoritesSuccess({
+          favoriteBookIds: 'user' in action && action.user ? action.user.favorites ?? [] : [],
+        })
+      )
+    )
   );
 }

@@ -25,7 +25,4 @@ export class HeaderComponent {
 
   readonly heartIcon = Heart;
 
-  constructor() {
-    this.favoritesFacade.loadFavorites();
-  }
 }

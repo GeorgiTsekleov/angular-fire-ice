@@ -1,3 +1,4 @@
+import type { FavoriteBookIds } from "@angular-fire-ice/shared";
 import type { UserRepository, UserEntity } from "./types";
 
 export class InMemoryUserRepository implements UserRepository {
@@ -14,5 +15,12 @@ export class InMemoryUserRepository implements UserRepository {
 
   create(entity: UserEntity): void {
     this.users.push(entity);
+  }
+
+  updateFavorites(userId: string, favoriteBookIds: FavoriteBookIds): void {
+    const user = this.users.find((u) => u.id === userId);
+    if (user) {
+      user.favorites = [...favoriteBookIds];
+    }
   }
 }
