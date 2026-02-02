@@ -1,0 +1,48 @@
+@if (!isAuthenticated()) {
+<a
+  routerLink="/login"
+  class="rounded-full p-2 text-white transition hover:bg-white/10"
+  (click)="onLoginClick()"
+  aria-label="Log in"
+>
+  <lucide-icon [img]="loginIcon" [size]="30" />
+</a>
+} @else {
+<button
+  type="button"
+  class="rounded-full p-2 text-white transition hover:bg-white/10"
+  (click)="toggleUserMenu()"
+  aria-label="User menu"
+  [attr.aria-expanded]="userMenuOpen()"
+>
+  <lucide-icon [img]="userIcon" [size]="30" />
+</button>
+
+@if (userMenuOpen()) {
+<div
+  class="absolute top-full z-10 mt-2 w-56 rounded-lg border border-white/10 bg-gray-800 py-3 shadow-lg"
+  role="menu"
+>
+  <div class="flex items-center justify-between gap-3 px-4 pb-3">
+    <span class="text-sm font-medium text-white"> User: {{ user()?.name }} </span>
+    <button
+      type="button"
+      class="rounded-full p-1.5 text-white transition hover:bg-white/10"
+      (click)="closeUserMenu()"
+      aria-label="Close menu"
+    >
+      <lucide-icon [img]="closeIcon" [size]="20" />
+    </button>
+  </div>
+
+  <div class="border-t border-white/10 px-2 pt-2">
+    <button
+      type="button"
+      class="w-full rounded-md bg-red-600 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-red-700"
+      (click)="logout()"
+    >
+      Log Out
+    </button>
+  </div>
+</div>
+} }
