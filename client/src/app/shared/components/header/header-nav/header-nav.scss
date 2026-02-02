@@ -1,5 +1,5 @@
-@import '../../../../theme/mixins.scss';
-@import '../../../../theme/variables.scss';
+@use '../../../../theme/mixins' as *;
+@use '../../../../theme/variables' as *;
 
 :host {
   display: contents;
