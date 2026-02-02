@@ -1,1 +1,40 @@
-<p>favorites-page works!</p>
+<div class="favorites-page">
+  <header class="favorites-page__header px-5">
+    <h1 class="favorites-page__title">Favorites</h1>
+    <p class="favorites-page__subtitle">
+      Your personal collection of favorite books from the world of Ice & Fire, carefully gathered in
+      one place to help you shape your own journey through the history of the realm. Here you can
+      easily revisit the stories that captured your attention, return to the books that left a
+      lasting impression, and keep track of the tales you wish to explore again in the future.
+      Whether you are continuing your exploration or simply revisiting familiar narratives, this
+      space serves as your curated archive of the stories that matter most to you.
+    </p>
+  </header>
+
+  <app-loading-guard [loadingInput]="loading()">
+    <app-error-guard [errorInput]="error()">
+      @if (favoriteBooks().length === 0) {
+      <div class="favorites-page__empty">
+        <p>No favorites yet.</p>
+        <p class="favorites-page__empty-hint">Add books from the Books list to see them here.</p>
+      </div>
+      } @else {
+      <app-content-card-wrapper>
+        @for (book of favoriteBooks(); track book.url) {
+        <app-content-card
+          [title]="book.name"
+          [subtitle]="getSubtitle(book)"
+          [description]="getDescription(book)"
+          [isbn]="book.isbn"
+          [isFavorite]="true"
+          [showActionButton]="false"
+          [alt]="book.name"
+          (favoriteClick)="onToggleFavorite(book)"
+          (cardClick)="onCardClick(book)"
+        />
+        }
+      </app-content-card-wrapper>
+      }
+    </app-error-guard>
+  </app-loading-guard>
+</div>
