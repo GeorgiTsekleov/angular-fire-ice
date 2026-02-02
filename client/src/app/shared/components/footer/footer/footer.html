@@ -1,0 +1,30 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__left">
+      <p class="footer__brand">{{ appName }}</p>
+      <p class="footer__tagline">{{ tagline }}</p>
+      <p class="footer__meta">
+        Powered by Ice and Fire API
+        <br />
+        <span class="text-white">© {{ copyrightYear }} {{ appName }}</span>
+      </p>
+    </div>
+
+    <div class="footer__right">
+      <span class="footer__social-label">Follow us</span>
+      <div class="footer__social">
+        @for (social of socialLinks; track social.ariaLabel) {
+        <a
+          [href]="social.href"
+          [attr.aria-label]="social.ariaLabel"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer__social-link"
+        >
+          <lucide-icon [img]="social.icon" [size]="22" />
+        </a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

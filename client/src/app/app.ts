@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, RouterOutlet } from '@angular/router';
 import { AppFacade } from './core/services/app.facade';
 import { HeaderComponent } from './shared/components/header/header/header';
+import { FooterComponent } from './shared/components/footer/footer/footer';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
@@ -10,7 +11,7 @@ const HOME_PAGE_URL = '/';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
