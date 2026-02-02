@@ -19,15 +19,20 @@ export class FavoritesApiService {
     return `${this.baseUrl}/${this.favoritesPath}`;
   }
 
+  private readonly options = { withCredentials: true as const };
+
   getFavorites(): Observable<FavoritesApiResponse> {
-    return this.http.get<FavoritesApiResponse>(this.url);
+    return this.http.get<FavoritesApiResponse>(this.url, this.options);
   }
 
   addFavorite(bookId: string): Observable<FavoritesApiResponse> {
-    return this.http.post<FavoritesApiResponse>(this.url, { bookId });
+    return this.http.post<FavoritesApiResponse>(this.url, { bookId }, this.options);
   }
 
   removeFavorite(bookId: string): Observable<FavoritesApiResponse> {
-    return this.http.delete<FavoritesApiResponse>(`${this.url}/${encodeURIComponent(bookId)}`);
+    return this.http.delete<FavoritesApiResponse>(
+      `${this.url}/${encodeURIComponent(bookId)}`,
+      this.options
+    );
   }
 }
