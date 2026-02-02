@@ -1,6 +1,6 @@
 <button
   type="button"
-  class="rounded-full p-2 text-white transition hover:bg-white/10 cursor-pointer"
+  class="rounded-lg p-2 text-white transition hover:bg-white/10 cursor-pointer"
   (click)="searchModal.open()"
   aria-label="Search"
 >
@@ -16,14 +16,14 @@
   aria-label="Search books"
 >
   <div
-    class="search-modal relative min-w-[20rem] max-w-md rounded-lg border border-white/30 bg-white/5 p-4 shadow-xl backdrop-blur-sm"
+    class="search__modal relative min-w-[20rem] max-w-md rounded-lg border border-white/30 bg-white/5 p-4 shadow-xl backdrop-blur-sm"
     (click)="$event.stopPropagation()"
   >
     <div class="mb-3 flex items-center justify-between">
       <span class="text-sm font-medium text-white">Search books</span>
     </div>
 
-    <div class="search-bar" (blur)="onBlur()">
+    <div class="search__bar" (blur)="onBlur()">
       <input
         type="search"
         [value]="query()"
@@ -44,7 +44,7 @@
         }
       </ul>
       } @if (isOpen() && results().length === 0) {
-      <p class="results-empty text-white text-center">No books found</p>
+      <p class="results__empty text-white text-center">No books found</p>
       }
     </div>
   </div>

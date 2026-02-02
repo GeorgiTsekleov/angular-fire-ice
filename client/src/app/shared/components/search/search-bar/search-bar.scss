@@ -1,8 +1,8 @@
-.search-modal {
+.search__modal {
     height: 20rem;
 }
 
-.search-bar {
+.search__bar {
     position: relative;
 
     input {
@@ -46,7 +46,7 @@
         }
     }
 
-    .results-empty {
+    .results__empty {
         position: absolute;
         top: 50%;
         width: 100%;
