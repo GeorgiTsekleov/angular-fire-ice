@@ -89,13 +89,34 @@ describe("Favorites API", () => {
     });
   });
 
+  it("should update favorites across logout and re-login", async () => {
+    const book1 = "https://api.example.com/books/1";
+    const book2 = "https://api.example.com/books/2";
+
+    await agent.post("/api/favorites").send({ bookId: book1 }).expect(200);
+
+    await agent.post("/api/auth/logout").expect(204);
+
+    await agent
+      .post("/api/auth/login")
+      .send({ email: testUser.email, password: testUser.password })
+      .expect(200);
+
+    const getAfterReLogin = await agent.get("/api/favorites").expect(200);
+    expect(getAfterReLogin.body.favoriteBookIds).toEqual([book1]);
+
+    const addSecond = await agent
+      .post("/api/favorites")
+      .send({ bookId: book2 })
+      .expect(200);
+    expect(addSecond.body.favoriteBookIds).toEqual([book1, book2]);
+  });
+
   describe("DELETE /api/favorites/:bookId", () => {
     it("should remove a book ID and return updated list", async () => {
       await agent.post("/api/favorites").send({ bookId: "to-remove" });
 
-      const res = await agent
-        .delete("/api/favorites/to-remove")
-        .expect(200);
+      const res = await agent.delete("/api/favorites/to-remove").expect(200);
 
       expect(res.body.favoriteBookIds).not.toContain("to-remove");
     });
