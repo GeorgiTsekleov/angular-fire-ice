@@ -1,9 +1,9 @@
 <div class="book-cover">
   @if (status() === 'loading') {
   <div
-    class="placeholder flex min-h-[15rem] items-center justify-center text-[var(--text-primary)]"
+    class="placeholder flex min-h-[8rem] items-center justify-center text-[var(--text-primary)]"
   >
-    <app-loader />
+    <app-loader size="md" />
   </div>
   } @if (status() === 'error') {
   <div class="fallback">No cover available</div>
