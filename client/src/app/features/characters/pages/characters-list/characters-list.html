@@ -1,15 +1,26 @@
 <app-loading-guard [loadingInput]="loading()">
   <app-error-guard [errorInput]="error()">
-    <ul class="characters-list">
-      @for (character of charactersList(); track character.url.split('/').pop()) {
+    @for (item of booksWithCharacters(); track item.book.url) {
+    <section
+      class="characters-list__book"
+      [attr.aria-labelledby]="'book-' + getBookId(item.book.url)"
+    >
+      <app-section-title [headingId]="'book-' + getBookId(item.book.url)">{{
+        item.book.name
+      }}</app-section-title>
+
+      <app-horizontal-scroll-container>
+        @for (character of getDisplayableCharacters(item.characters); track $index) {
         <li>
           <app-characters-card
-            [characterName]="character?.playedBy?.[0]"
-            [characterId]="character.url.split('/').pop() ?? ''"
-            [bookId]="bookId()"
+            [characterName]="getCharacterDisplayName(character)"
+            [characterId]="getCharacterId(character.url)"
+            [bookId]="getBookId(item.book.url)"
           />
         </li>
-      }
-    </ul>
+        }
+      </app-horizontal-scroll-container>
+    </section>
+    }
   </app-error-guard>
 </app-loading-guard>

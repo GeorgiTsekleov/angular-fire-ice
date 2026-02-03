@@ -1,0 +1,13 @@
+.characters-list__book {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing-2xl);
+}
+
+.characters-list__book-title {
+  font-family: var(--font-sub-title);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
