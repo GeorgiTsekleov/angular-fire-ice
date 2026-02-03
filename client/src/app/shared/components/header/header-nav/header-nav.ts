@@ -19,7 +19,7 @@ export class HeaderNavComponent {
   readonly navItems: { label: string; routerLink: string }[] = [
     { label: 'Home', routerLink: '/' },
     { label: 'Books', routerLink: '/books' },
-    { label: 'Characters', routerLink: '/books/1/characters' },
+    { label: 'Characters', routerLink: '/books/characters' },
   ];
 
   protected onNavLinkClick(): void {

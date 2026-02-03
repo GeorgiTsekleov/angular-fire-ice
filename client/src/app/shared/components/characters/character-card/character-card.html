@@ -1,16 +1,18 @@
 <div class="chapter-card" (click)="onSelect()">
-  @if (summary(); as summary) {
-    @if (summary.thumbnail?.source) {
-      <img [src]="summary.thumbnail?.source" [alt]="summary.title" />
-    } @else {
-      <div class="placeholder">No image</div>
-    }
+  @if (summary(); as summary) { @if (summary.thumbnail?.source) {
+  <img [src]="summary.thumbnail?.source" [alt]="summary.title" />
+  } @else {
+  <img src="../../../assets/images/png/no-image-02.png" alt="Unknown character" />
+  }
 
-    <h3>{{ summary.title }}</h3>
-    @if (this.showExtract() && summary.extract) {
-      <p>{{ summary.extract }}</p>
-    }
-  } @else if (loading()) {
-    <div class="placeholder">Loading...</div>
+  <h3>{{ summary.title }}</h3>
+  @if (this.showExtract() && summary.extract) {
+  <p>{{ summary.extract }}</p>
+  } } @else if (loading()) {
+  <div
+    class="placeholder flex min-h-[15rem] items-center justify-center text-[var(--text-primary)]"
+  >
+    <app-loader size="md" />
+  </div>
   }
 </div>

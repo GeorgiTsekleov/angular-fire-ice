@@ -5,10 +5,11 @@ import {
   WikipediaSummary,
 } from '../../../../core/services/api/wikipedia-api.service';
 import { environment } from '../../../../../environments/environment.development';
+import { Loader } from '../../loader/loader';
 
 @Component({
   selector: 'app-characters-card',
-  imports: [],
+  imports: [Loader],
   templateUrl: './character-card.html',
   styleUrl: './character-card.scss',
 })

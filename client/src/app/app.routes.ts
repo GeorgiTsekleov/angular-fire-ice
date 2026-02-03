@@ -14,6 +14,14 @@ export const routes: Routes = [
     title: 'Books of Ice and Fire',
   },
   {
+    path: 'books/characters',
+    loadComponent: () =>
+      import('./features/characters/pages/characters-list/characters-list').then(
+        (m) => m.CharactersList
+      ),
+    title: 'Chapters of Ice and Fire',
+  },
+  {
     path: 'books/:id',
     loadComponent: () =>
       import('./features/books/pages/book-detail/book-detail').then((m) => m.BookDetail),
@@ -23,7 +31,7 @@ export const routes: Routes = [
     path: 'favorites',
     loadComponent: () =>
       import('./features/favorites/pages/favorites-page/favorites-page').then(
-        (m) => m.FavoritesPage,
+        (m) => m.FavoritesPage
       ),
     title: 'Favorites of Ice and Fire',
   },
@@ -31,7 +39,7 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () =>
       import('./features/auth/pages/register/register-page/register-page').then(
-        (m) => m.RegisterPage,
+        (m) => m.RegisterPage
       ),
     title: 'Register - Ice and Fire',
   },
@@ -42,18 +50,10 @@ export const routes: Routes = [
     title: 'Log in - Ice and Fire',
   },
   {
-    path: 'books/:id/characters',
-    loadComponent: () =>
-      import('./features/characters/pages/characters-list/characters-list').then(
-        (m) => m.CharactersList,
-      ),
-    title: 'Chapters of Ice and Fire',
-  },
-  {
     path: 'books/:id/characters/:characterId',
     loadComponent: () =>
       import('./features/characters/pages/characters-details/characters-detail').then(
-        (m) => m.CharactersDetail,
+        (m) => m.CharactersDetail
       ),
     title: 'Chapter Detail of Ice and Fire',
   },

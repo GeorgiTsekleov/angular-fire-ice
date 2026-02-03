@@ -1,0 +1,18 @@
+@use '../../../../theme/variables.scss' as *;
+
+.chapter-card {
+    img {
+        min-width: clamp(10rem, 18vw, 15rem);
+        width: auto;
+        height: clamp(15rem, 27vw, 20rem);
+        object-fit: cover;
+        border-radius: var(--radius-md);
+        padding-inline: var(--spacing-xs);
+    }
+
+    h3 {
+        max-width: 10rem;
+        text-align: center;
+        margin-inline: auto;
+    }
+}

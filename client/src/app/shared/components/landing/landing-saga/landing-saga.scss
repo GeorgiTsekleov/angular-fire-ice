@@ -4,11 +4,10 @@
 .saga {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: var(--spacing-2xl) var(--spacing-lg);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-
+  overflow: hidden;
 }
 
 .saga__intro {
@@ -18,23 +17,6 @@
   font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--text-secondary);
-}
-
-.saga__scroll {
-  width: 100%;
-  max-width: 72rem;
-  margin-bottom: var(--spacing-2xl);
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
-.saga__list {
-  display: flex;
-  gap: var(--spacing-lg);
-  list-style: none;
-  margin: 0;
-  padding: var(--spacing-sm) var(--spacing-md);
-  min-width: min-content;
 }
 
 .saga__item {
@@ -60,6 +42,7 @@
   text-decoration: none;
   color: var(--text-primary);
   transition: transform var(--transition-base);
+  margin-inline: var(--spacing-xs);
 
   &:hover {
     transform: scale(1.02);
