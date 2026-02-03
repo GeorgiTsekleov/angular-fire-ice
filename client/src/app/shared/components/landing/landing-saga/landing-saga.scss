@@ -20,14 +20,6 @@
   color: var(--text-secondary);
 }
 
-.saga__scroll {
-  width: 100%;
-  max-width: 72rem;
-  margin-bottom: var(--spacing-2xl);
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
 .saga__list {
   display: flex;
   gap: var(--spacing-lg);

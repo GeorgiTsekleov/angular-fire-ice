@@ -4,23 +4,23 @@
     Journey through the novels of A Song of Ice and Fire. Dive into the epic stories of Westeros.
   </p>
 
-  <div class="saga__scroll overflow-x-auto snap-x snap-mandatory">
+  <app-horizontal-scroll-container>
     <ul class="saga__list">
       @for (book of books(); track book.url) {
-        <li class="saga__item snap-normal flex-shrink-0">
-          <a [routerLink]="['/books', getBookId(book.url)]" class="saga__link">
-            <app-book-cover
-              [isbn]="book.isbn"
-              [alt]="book.name"
-              [quality]="'L'"
-              class="saga__cover"
-            />
-            <span class="saga__book-name">{{ book.name }}</span>
-          </a>
-        </li>
+      <li class="saga__item snap-normal flex-shrink-0">
+        <a [routerLink]="['/books', getBookId(book.url)]" class="saga__link">
+          <app-book-cover
+            [isbn]="book.isbn"
+            [alt]="book.name"
+            [quality]="'L'"
+            class="saga__cover"
+          />
+          <span class="saga__book-name">{{ book.name }}</span>
+        </a>
+      </li>
       }
     </ul>
-  </div>
+  </app-horizontal-scroll-container>
 
   <div class="saga__actions">
     <app-secondary-button routerLink="/books">View all books</app-secondary-button>
