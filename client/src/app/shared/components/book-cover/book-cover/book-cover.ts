@@ -3,12 +3,13 @@ import {
   CoverQuality,
   OpenLibraryApiService,
 } from '../../../../core/services/api/book-cover-api.service';
+import { Loader } from '../../loader/loader';
 
 type Status = 'loading' | 'loaded' | 'error';
 
 @Component({
   selector: 'app-book-cover',
-  imports: [],
+  imports: [Loader],
   templateUrl: './book-cover.html',
   styleUrl: './book-cover.scss',
 })
@@ -22,7 +23,7 @@ export class BookCover {
   private readonly coverLibrary = inject(OpenLibraryApiService);
 
   protected readonly imageUrl = computed(() =>
-    this.coverLibrary.getCoverUrl(this.isbn(), this.quality()),
+    this.coverLibrary.getCoverUrl(this.isbn(), this.quality())
   );
 
   protected onLoad(): void {
