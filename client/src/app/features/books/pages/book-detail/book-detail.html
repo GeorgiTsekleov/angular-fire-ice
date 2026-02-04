@@ -10,11 +10,10 @@
         and legends of the realm.
       </p>
     </header>
-    
-    <article class="book-detail">
-      <div class="book-detail__media">
-        <app-book-cover [isbn]="book.isbn" [alt]="book.name" quality="L" />
-      </div>
+
+    <app-content-details-card>
+      <app-book-cover [isbn]="book.isbn" [alt]="book.name" quality="L" />
+
       <div class="book-detail__details">
         <header class="book-detail__header">
           <h1 class="book-detail__title">{{ book.name }}</h1>
@@ -25,20 +24,19 @@
             [attr.aria-label]="isFavorite(book.url) ? 'Remove from favorites' : 'Add to favorites'"
             (click)="onToggleFavorite(book)"
           >
-            <span class="book-detail__heart" [class.is-favorite]="isFavorite(book.url)">♥</span>
+            <span class="book-detail__heart" [class.is-favorite]="isFavorite(book.url)">
+              <lucide-icon [img]="heartIcon" [size]="24" />
+            </span>
           </button>
         </header>
 
-        <dl class="book-detail__meta">
+        <section class="book-detail__meta pt-5">
           @for (row of getMetaRows(book); track row.label) {
-          <div class="book-detail__row">
-            <dt class="book-detail__label">{{ row.label }}</dt>
-            <dd class="book-detail__value">{{ row.value }}</dd>
-          </div>
+          <app-content-card-meta [row]="row" />
           }
-        </dl>
+        </section>
       </div>
-    </article>
+    </app-content-details-card>
 
     <section class="book-detail__characters" aria-labelledby="book-detail-characters">
       <app-section-title headingId="book-detail-characters">Characters</app-section-title>
