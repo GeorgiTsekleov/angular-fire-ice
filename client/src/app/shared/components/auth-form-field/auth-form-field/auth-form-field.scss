@@ -1,0 +1,32 @@
+@use '../../../../theme/variables' as *;
+
+.auth-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.auth-form-field__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.auth-form-field__input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  background: rgba(31, 41, 55, 0.5);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+.auth-form-field__error {
+  font-size: 0.75rem;
+  color: var(--accent-primary, #c0392b);
+}

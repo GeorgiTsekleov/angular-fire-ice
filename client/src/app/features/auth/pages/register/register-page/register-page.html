@@ -1,60 +1,45 @@
-<section class="register">
-  <h1>Register</h1>
+<section class="auth-page">
+  <app-glass-card>
+    <h1 class="auth-form__title">Register</h1>
 
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <div class="field">
-      <label for="email">Email</label>
-      <input
-        id="email"
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="auth-form">
+      <app-auth-form-field
+        label="Email"
+        controlName="email"
+        [control]="form.controls['email']"
         type="email"
-        formControlName="email"
         placeholder="you@example.com"
         autocomplete="email"
-        required
+        errorMessage="Valid email is required"
       />
-      @if (form.get('email')?.invalid && form.get('email')?.touched) {
-        <span class="error">Valid email is required</span>
-      }
-    </div>
-
-    <div class="field">
-      <label for="password">Password</label>
-      <input
-        id="password"
+      <app-auth-form-field
+        label="Password"
+        controlName="password"
+        [control]="form.controls['password']"
         type="password"
-        formControlName="password"
         placeholder="At least 6 characters"
         autocomplete="new-password"
-        required
+        errorMessage="Password must be at least 6 characters"
       />
-      @if (form.get('password')?.invalid && form.get('password')?.touched) {
-        <span class="error">Password must be at least 6 characters</span>
-      }
-    </div>
-
-    <div class="field">
-      <label for="name">Name (optional)</label>
-      <input
-        id="name"
+      <app-auth-form-field
+        label="Name (optional)"
+        controlName="name"
+        [control]="form.controls['name']"
         type="text"
-        formControlName="name"
         placeholder="Your name"
         autocomplete="name"
       />
-    </div>
 
-    @if (authFacade.error()) {
-      <p class="error-message">{{ authFacade.error() }}</p>
-    }
+      <app-auth-form-error [message]="authFacade.error()" />
 
-    <button type="submit" [disabled]="form.invalid || authFacade.status() === 'loading'">
-      @if (authFacade.status() === 'loading') {
-        Registering...
-      } @else {
-        Register
-      }
-    </button>
-  </form>
+      <app-auth-submit-button
+        label="Register"
+        loadingLabel="Registering..."
+        [loading]="authFacade.status() === 'loading'"
+        [disabled]="form.invalid || authFacade.status() === 'loading'"
+      />
+    </form>
 
-  <p class="login-link">Already have an account? <a routerLink="/login">Log in</a></p>
+    <app-auth-footer-link text="Already have an account?" linkText="Log in" link="/login" />
+  </app-glass-card>
 </section>

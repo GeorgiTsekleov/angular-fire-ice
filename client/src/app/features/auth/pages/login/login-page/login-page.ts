@@ -1,13 +1,24 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthFacade } from '../../../../../core/services/auth/auth.facade';
-import { RouterLink } from '@angular/router';
 import { RedirectWhenAuthenticatedDirective } from '../../../../../shared/directives/auth-redirect.directive';
+import { GlassCard } from '../../../../../shared/components/glass-card/glass-card/glass-card';
+import { AuthFormField } from '../../../../../shared/components/auth-form-field/auth-form-field/auth-form-field';
+import { AuthFormError } from '../../../../../shared/components/auth-form-error/auth-form-error/auth-form-error';
+import { AuthSubmitButton } from '../../../../../shared/components/auth-submit-button/auth-submit-button/auth-submit-button';
+import { AuthFooterLink } from '../../../../../shared/components/auth-footer-link/auth-footer-link/auth-footer-link';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    GlassCard,
+    AuthFormField,
+    AuthFormError,
+    AuthSubmitButton,
+    AuthFooterLink,
+  ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

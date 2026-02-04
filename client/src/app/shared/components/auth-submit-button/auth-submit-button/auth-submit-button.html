@@ -1,0 +1,7 @@
+<button type="submit" class="auth-submit-button" [disabled]="disabled()">
+  @if (loading()) {
+  {{ loadingLabel() }}
+  } @else {
+  {{ label() }}
+  }
+</button>

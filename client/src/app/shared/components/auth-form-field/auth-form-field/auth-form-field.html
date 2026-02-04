@@ -1,0 +1,14 @@
+<div class="auth-form-field">
+  <label [for]="controlName()" class="auth-form-field__label">{{ label() }}</label>
+  <input
+    [id]="controlName()"
+    [type]="type()"
+    [formControl]="control()"
+    [placeholder]="placeholder()"
+    [attr.autocomplete]="autocomplete()"
+    class="auth-form-field__input"
+  />
+  @if (control().invalid && control().touched && errorMessage()) {
+  <span class="auth-form-field__error">{{ errorMessage() }}</span>
+  }
+</div>
