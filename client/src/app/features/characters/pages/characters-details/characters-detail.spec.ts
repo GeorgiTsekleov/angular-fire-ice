@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { of } from 'rxjs';
+import { signal } from '@angular/core';
 
-import { CharacterApiService } from '../../../../core/services/api/character-api.service';
+import { CharacterDetailFacade } from '../../../../core/services/character-detail.facade';
 import { CharactersDetail } from './characters-detail';
 
 describe('CharactersDetail', () => {
@@ -15,8 +15,17 @@ describe('CharactersDetail', () => {
       providers: [
         provideRouter([]),
         {
-          provide: CharacterApiService,
-          useValue: { getCharacter: () => of({ url: '', name: '' }) },
+          provide: CharacterDetailFacade,
+          useValue: {
+            load: () => {},
+            character: signal(null),
+            books: signal([]),
+            loading: signal(false),
+            error: signal(null),
+            getCharacterDisplayName: () => '',
+            getMetaRows: () => [],
+            getBookId: () => '',
+          },
         },
       ],
     }).compileComponents();
