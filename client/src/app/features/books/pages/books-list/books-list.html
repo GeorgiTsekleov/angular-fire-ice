@@ -27,5 +27,22 @@
       />
       }
     </app-content-card-wrapper>
+
+    @if (showLoginMessage()) {
+    <div class="books-list__login-message" role="status">
+      <p class="books-list__login-message-text">Need to login first.</p>
+      <a routerLink="/login" class="books-list__login-message-link" (click)="dismissLoginMessage()"
+        >Login</a
+      >
+      <button
+        type="button"
+        class="books-list__login-message-close"
+        aria-label="Dismiss"
+        (click)="dismissLoginMessage()"
+      >
+        <lucide-icon [img]="closeIcon" [size]="20" />
+      </button>
+    </div>
+    }
   </app-error-guard>
 </app-loading-guard>

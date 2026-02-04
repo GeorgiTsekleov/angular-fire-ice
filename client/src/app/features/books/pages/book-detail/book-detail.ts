@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { LucideAngularModule, Heart } from 'lucide-angular';
 import { BookDetailFacade } from '../../../../core/services/book-detail.facade';
 import { FavoritesFacade } from '../../../../core/services/favorites.facade';
 import { routeParam } from '../../../../core/utils/route-param.util';
@@ -10,16 +11,21 @@ import { BookCover } from '../../../../shared/components/book-cover/book-cover/b
 import { CharactersCard } from '../../../../shared/components/characters/character-card/characters-card';
 import { SectionTitle } from '../../../../shared/components/section-title/section-title/section-title';
 import { HorizontalScrollContainer } from '../../../../shared/components/horizontal-scroll-container/horizontal-scroll-container';
+import { ContentDetailsCard } from '../../../../shared/components/content-card/content-details-card/content-details-card';
+import { ContentCardMeta } from '../../../../shared/components/content-card/content-card-meta/content-card-meta';
 
 @Component({
   selector: 'app-book-detail',
   imports: [
+    LucideAngularModule,
     LoadingGuard,
     ErrorGuard,
     BookCover,
     CharactersCard,
     SectionTitle,
     HorizontalScrollContainer,
+    ContentDetailsCard,
+    ContentCardMeta,
   ],
   templateUrl: './book-detail.html',
   styleUrl: './book-detail.scss',
@@ -27,6 +33,8 @@ import { HorizontalScrollContainer } from '../../../../shared/components/horizon
 export class BookDetail implements OnInit {
   protected readonly facade = inject(BookDetailFacade);
   private readonly favoritesFacade = inject(FavoritesFacade);
+
+  protected readonly heartIcon = Heart;
 
   protected readonly bookId = routeParam('id');
   protected readonly loading = this.facade.loading;

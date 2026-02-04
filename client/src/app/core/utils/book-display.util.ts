@@ -15,5 +15,5 @@ export function getDisplayDescription(book: Book): string {
 export function getDisplaySubtitle(book: Book): string {
   const authors = book.authors?.length ? book.authors.join(', ') : '—';
   const pages = book.numberOfPages ? `${book.numberOfPages} pages` : '';
-  return [authors, pages].filter(Boolean).join(' · ');
+  return [authors, pages].filter(Boolean).join('\n');
 }

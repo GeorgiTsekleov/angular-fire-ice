@@ -1,0 +1,25 @@
+@use '../../../../theme/mixins' as *;
+@use '../../../../theme/variables' as *;
+
+.book-detail__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+    padding-block: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.book-detail__label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    min-width: 5rem;
+}
+
+.book-detail__value {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+}

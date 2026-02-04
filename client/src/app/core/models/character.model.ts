@@ -5,6 +5,7 @@ export interface Character {
   culture: string;
   born: string;
   died: string;
+  titles?: string[];
   aliases: string[];
   father: string;
   mother: string;

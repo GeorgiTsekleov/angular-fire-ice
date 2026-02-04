@@ -1,17 +1,57 @@
 <app-loading-guard [loadingInput]="loading()">
   <app-error-guard [errorInput]="error()">
-    <app-characters-card
-      [characterName]="character()?.playedBy?.[0]"
-      [characterId]="characterId()"
-      [bookId]="bookId()"
-    />
     @if (character(); as character) {
-      <h2>{{ character?.name }}</h2>
+    <header class="character-detail__intro">
+      <h1 class="character-detail__intro-title">Character details</h1>
+      <p class="character-detail__intro-subtitle">
+        Explore this character background, origins, and personal journey throughout the story. Learn
+        about their allegiances, loyalties, and shifting relationships, as well as the houses,
+        factions, or causes they are connected to. Discover the books in which this character
+        appears and understand how their actions, decisions, and fate contribute to the larger A
+        Song of Ice and Fire saga.
+      </p>
+    </header>
 
-      <p>{{ character.culture }}</p>
-      <p>{{ character.born }}</p>
-      <p>{{ character.died }}</p>
-      <p>{{ character.aliases }}</p>
+    <app-content-details-card>
+      <app-characters-card
+        [characterName]="getCharacterDisplayName(character)"
+        [characterId]="characterId()"
+        [bookId]="bookId()"
+      />
+
+      <div class="book-detail__details">
+        <header class="character-detail__header">
+          <h2 class="character-detail__title">{{ character.name }}</h2>
+        </header>
+
+        <section class="book-detail__meta pt-5">
+          @for (row of getMetaRows(character); track row.label) {
+          <app-content-card-meta [row]="row" />
+          }
+        </section>
+      </div>
+    </app-content-details-card>
+
+    <header class="character-detail__intro mt-5">
+      <h2 class="character-detail__intro-title pl-1">Books</h2>
+    </header>
+    <section class="character-detail__books" aria-labelledby="character-detail-books">
+      <app-horizontal-scroll-container class="min-h-[20rem]">
+        @for (book of books(); track book.url) {
+        <li class="character-detail__book-item snap-normal flex-shrink-0">
+          <a [routerLink]="[booksPath, getBookId(book)]" class="character-detail__book-link">
+            <app-book-cover
+              [isbn]="book.isbn"
+              [alt]="book.name"
+              quality="L"
+              class="character-detail__book-cover"
+            />
+            <span class="character-detail__book-name">{{ book.name }}</span>
+          </a>
+        </li>
+        }
+      </app-horizontal-scroll-container>
+    </section>
     }
   </app-error-guard>
 </app-loading-guard>
