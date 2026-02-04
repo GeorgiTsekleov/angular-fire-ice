@@ -8,6 +8,16 @@ import { environment } from '../../../environments/environment.development';
 export class IceAndFireApiService {
   private http = inject(HttpClient);
 
+  getBook(id: string): Observable<Book> {
+    const baseUrl = environment.apiUrl;
+    const booksPath = environment.booksPath;
+    if (!baseUrl || !booksPath) {
+      throw new Error('Environment variables are not set');
+    }
+    const url = `${baseUrl}/${booksPath}/${id}`;
+    return this.http.get<Book>(url);
+  }
+
   getAllBooks(page = 1, pageSize = 10): Observable<Book[]> {
     const params = { page: String(page), pageSize: String(pageSize) };
     const baseUrl = environment.apiUrl;
