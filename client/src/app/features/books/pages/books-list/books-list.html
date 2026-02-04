@@ -1,5 +1,17 @@
 <app-loading-guard [loadingInput]="booksFacade.loading()">
   <app-error-guard [errorInput]="booksFacade.error()">
+    <header class="books-list__intro px-5">
+      <h1 class="books-list__intro-title">Books</h1>
+      <p class="books-list__intro-subtitle">
+        Browse the complete collection of novels from the A Song of Ice and Fire series. Discover
+        each book is role in the larger narrative, explore major storylines and pivotal moments, and
+        follow the rise and fall of powerful houses, legendary figures, and epic conflicts that
+        define the world of Westeros and beyond. Whether you are starting the journey or revisiting
+        the saga, this collection brings the full scope of George R. R. Martin epic fantasy to one
+        place.
+      </p>
+    </header>
+
     <app-content-card-wrapper>
       @for (book of books(); track book.url) {
       <app-content-card

@@ -9,7 +9,7 @@
         item.book.name
       }}</app-section-title>
 
-      <app-horizontal-scroll-container>
+      <app-horizontal-scroll-container justifyContent="center">
         @for (character of getDisplayableCharacters(item.characters); track $index) {
         <li>
           <app-characters-card

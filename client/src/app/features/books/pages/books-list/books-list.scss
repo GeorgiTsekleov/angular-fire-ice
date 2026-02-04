@@ -1,5 +1,29 @@
 @use "../../../../theme/variables" as *;
 
+:host {
+  max-width: $breakpoint-xl;
+  margin-inline: auto;
+}
+
+.books-list__intro {
+  padding-top: var(--spacing-sm);
+}
+
+.books-list__intro-title {
+  font-family: var(--font-main-title);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.books-list__intro-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding-bottom: var(--spacing-sm);
+}
+
 .books-list {
   list-style: none;
   margin: 0;

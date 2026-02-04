@@ -1,8 +1,59 @@
-<div>
-  <h2>Book Detail</h2>
-  <p>Book ID: {{ bookId() }}</p>
-  <p>book detail counter: {{ counter() }}</p>
-  <button (click)="incrementCounter()">Increment Book Detail</button>
-  <button (click)="decrementCounter()">Decrement Book Detail</button>
-  <button (click)="resetCounter()">Reset Book Detail</button>
-</div>
+<app-loading-guard [loadingInput]="loading()">
+  <app-error-guard [errorInput]="error()">
+    @if (book(); as book) {
+    <header class="book-detail__intro">
+      <h1 class="book-detail__intro-title">Book details</h1>
+      <p class="book-detail__intro-subtitle">
+        Discover an in-depth overview of this book, including its story, key themes, notable
+        characters, and important publication details. Learn how this title fits into the wider A
+        Song of Ice and Fire saga and why it plays a crucial role in shaping the world, conflicts,
+        and legends of the realm.
+      </p>
+    </header>
+    
+    <article class="book-detail">
+      <div class="book-detail__media">
+        <app-book-cover [isbn]="book.isbn" [alt]="book.name" quality="L" />
+      </div>
+      <div class="book-detail__details">
+        <header class="book-detail__header">
+          <h1 class="book-detail__title">{{ book.name }}</h1>
+          <button
+            type="button"
+            class="book-detail__favorite"
+            [attr.aria-pressed]="isFavorite(book.url)"
+            [attr.aria-label]="isFavorite(book.url) ? 'Remove from favorites' : 'Add to favorites'"
+            (click)="onToggleFavorite(book)"
+          >
+            <span class="book-detail__heart" [class.is-favorite]="isFavorite(book.url)">♥</span>
+          </button>
+        </header>
+
+        <dl class="book-detail__meta">
+          @for (row of getMetaRows(book); track row.label) {
+          <div class="book-detail__row">
+            <dt class="book-detail__label">{{ row.label }}</dt>
+            <dd class="book-detail__value">{{ row.value }}</dd>
+          </div>
+          }
+        </dl>
+      </div>
+    </article>
+
+    <section class="book-detail__characters" aria-labelledby="book-detail-characters">
+      <app-section-title headingId="book-detail-characters">Characters</app-section-title>
+      <app-horizontal-scroll-container justifyContent="center">
+        @for (character of getDisplayableCharacters(characters()); track $index) {
+        <li>
+          <app-characters-card
+            [characterName]="getCharacterDisplayName(character)"
+            [characterId]="getCharacterId(character.url)"
+            [bookId]="getBookId(book.url)"
+          />
+        </li>
+        }
+      </app-horizontal-scroll-container>
+    </section>
+    }
+  </app-error-guard>
+</app-loading-guard>
