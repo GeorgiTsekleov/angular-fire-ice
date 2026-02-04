@@ -4,12 +4,22 @@
 
 .book-cover {
     position: relative;
-    min-height: 4rem;
+    min-height: 15rem;
     opacity: 0.8;
 
     &:hover {
         opacity: 1;
     }
+}
+
+.placeholder {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .fallback {

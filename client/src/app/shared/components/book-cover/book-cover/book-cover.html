@@ -1,8 +1,6 @@
 <div class="book-cover">
   @if (status() === 'loading') {
-  <div
-    class="placeholder flex min-h-[8rem] items-center justify-center text-[var(--text-primary)]"
-  >
+  <div class="placeholder min-h-[8rem] text-[var(--text-primary)]">
     <app-loader size="md" />
   </div>
   } @if (status() === 'error') {
