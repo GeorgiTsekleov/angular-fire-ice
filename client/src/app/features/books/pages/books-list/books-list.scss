@@ -32,3 +32,50 @@
   flex-direction: column;
   gap: var(--spacing-md);
 }
+
+.books-list__login-message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--surface-secondary, rgba(0, 0, 0, 0.8));
+  color: var(--text-primary);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+  isolation: isolate;
+}
+
+.books-list__login-message-close {
+  position: absolute;
+  right: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs, 4px);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.books-list__login-message-text {
+  margin: 0;
+}
+
+.books-list__login-message-link {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
