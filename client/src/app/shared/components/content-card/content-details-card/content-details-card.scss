@@ -2,8 +2,7 @@
 @use '../../../../theme/variables' as *;
 
 .book-detail__details {
-    // margin-block: auto;
-    max-height: 22rem;
+    max-height: 25rem;
     overflow-y: scroll;
     width: 100%;
     position: relative;
