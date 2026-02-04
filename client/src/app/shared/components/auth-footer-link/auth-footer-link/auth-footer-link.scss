@@ -1,0 +1,17 @@
+@use '../../../../theme/variables' as *;
+
+.auth-footer-link {
+  margin: var(--spacing-lg) 0 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.auth-footer-link__anchor {
+  color: var(--accent-primary);
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,13 @@
+@use '../../../../theme/variables' as *;
+
+.glass-card {
+  position: relative;
+  min-width: 20rem;
+  max-width: 28rem;
+  width: 100%;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-medium);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
