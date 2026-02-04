@@ -1,5 +1,29 @@
 @use "theme/variables" as *;
 
+// Global dark scrollbar (when overflow is scrollable)
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-medium);
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
 :host {
     display: flex;
     flex-direction: column;
