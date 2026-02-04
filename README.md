@@ -70,7 +70,12 @@ npm start
 
 The Angular app will be available at: http://localhost:4200
 
-### Step 4: Run backend tests (Terminal 3):
+### Step 4: Run server tests (Terminal 3):
 
 cd server
 npm test
+
+### Step 5: Run client tests (Terminal 4):
+
+cd client
+ng test
