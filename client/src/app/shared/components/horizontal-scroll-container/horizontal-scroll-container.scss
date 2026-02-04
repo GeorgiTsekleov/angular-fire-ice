@@ -21,5 +21,17 @@
     padding: var(--spacing-sm) var(--spacing-md);
     min-width: min-content;
     margin-inline: auto;
+
+    &.start {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.end {
+      justify-content: flex-end;
+    }
   }
 }
