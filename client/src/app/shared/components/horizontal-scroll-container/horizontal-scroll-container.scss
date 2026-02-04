@@ -8,6 +8,7 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   margin-inline: auto;
+  min-height: 20rem;
 
   &:not(:last-child) {
     margin-bottom: var(--spacing-2xl);

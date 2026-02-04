@@ -8,6 +8,12 @@
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow: hidden;
+
+  ::ng-deep {
+    .horizontal-scroll {
+      min-height: 19rem !important;
+    }
+  }
 }
 
 .saga__intro {
@@ -43,10 +49,6 @@
   color: var(--text-primary);
   transition: transform var(--transition-base);
   margin-inline: var(--spacing-xs);
-
-  &:hover {
-    transform: scale(1.02);
-  }
 }
 
 .saga__cover {
@@ -72,4 +74,10 @@
 .saga__actions {
   display: flex;
   justify-content: center;
+  padding-top: var(--spacing-md);
+
+  @include respond-to(md) {
+    padding-top: 0;
+  }
+
 }
